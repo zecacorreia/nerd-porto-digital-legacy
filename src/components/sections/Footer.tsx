@@ -2,6 +2,7 @@
 
 import { m, useMotionTemplate, useScroll, useTransform } from "framer-motion";
 import { ArrowUp, ArrowUpRight, MapPin } from "lucide-react";
+import Link from "next/link";
 import { useRef } from "react";
 
 import { FadeIn } from "@/components/motion/FadeIn";
@@ -106,18 +107,18 @@ export function Footer() {
       {/* Navegação */}
       <div className="mx-auto mt-24 grid max-w-[1600px] gap-10 border-t border-paper/15 px-5 pt-10 md:mt-32 md:grid-cols-12 md:px-10">
         <div className="md:col-span-5">
-          <a href="#topo" aria-label="Porto Digital NERD — voltar ao início" className="inline-block">
+          <Link href="/" aria-label="Porto Digital NERD — início" className="inline-block">
             <Logo className="h-8 md:h-10" />
-          </a>
+          </Link>
           <p className="mt-3 max-w-xs text-sm text-paper/50">Núcleo de Empreendedorismo e Residência Digital</p>
         </div>
         <nav aria-label="Rodapé" className="md:col-span-4 md:col-start-7">
           <ul className="grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a href={link.href} className="text-paper/60 transition-colors hover:text-brand-light">
+                <Link href={link.href} className="text-paper/60 transition-colors hover:text-brand-light">
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

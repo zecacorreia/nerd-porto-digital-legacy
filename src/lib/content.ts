@@ -3,16 +3,19 @@
  * futura por um CMS.
  */
 
+/** Âncora na página atual (`#x`) ou rota interna (`/membro`, `/#numeros`). */
+export type SiteHref = `#${string}` | `/${string}`;
+
 export interface NavLink {
   label: string;
-  href: `#${string}`;
+  href: SiteHref;
 }
 
 export interface HeroContent {
   eyebrow: string;
   title: string;
   subtitle: string;
-  ctas: ReadonlyArray<{ label: string; href: `#${string}`; variant: "primary" | "ghost" }>;
+  ctas: ReadonlyArray<{ label: string; href: SiteHref; variant: "primary" | "ghost" }>;
 }
 
 export interface EcosystemStat {
@@ -25,11 +28,12 @@ export interface EcosystemStat {
 }
 
 export const navLinks: readonly NavLink[] = [
-  { label: "Ecossistema", href: "#numeros" },
-  { label: "Agora", href: "#agora" },
-  { label: "Caminhos", href: "#caminhos" },
-  { label: "Espaço", href: "#espaco" },
-  { label: "Governança", href: "#governanca" },
+  { label: "Ecossistema", href: "/#numeros" },
+  { label: "Agora", href: "/#agora" },
+  { label: "Caminhos", href: "/#caminhos" },
+  { label: "Espaço", href: "/#espaco" },
+  { label: "Governança", href: "/#governanca" },
+  { label: "Seja membro", href: "/membro" },
   { label: "Contato", href: "#contato" },
 ];
 
@@ -39,7 +43,7 @@ export const heroContent: HeroContent = {
   subtitle: "A forma mais rápida de conectar sua empresa ao ecossistema de inovação.",
   ctas: [
     { label: "Para startups", href: "#caminhos", variant: "primary" },
-    { label: "Seja membro", href: "#contato", variant: "ghost" },
+    { label: "Seja membro", href: "/membro", variant: "ghost" },
   ],
 };
 
@@ -149,7 +153,7 @@ export interface Path {
   eyebrow: string;
   title: string;
   intro: string;
-  cta: { label: string; href: `#${string}` };
+  cta: { label: string; href: SiteHref };
   pillars: readonly PathPillar[];
 }
 
@@ -160,7 +164,7 @@ export const paths: readonly Path[] = [
     eyebrow: "Caminho 01",
     title: "Para empresas",
     intro: "Conecte sua empresa a startups, talentos e oportunidades do ecossistema com quem conhece o terreno.",
-    cta: { label: "Seja membro", href: "#contato" },
+    cta: { label: "Seja membro", href: "/membro" },
     pillars: [
       {
         id: "curadoria",

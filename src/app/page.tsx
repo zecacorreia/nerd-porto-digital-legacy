@@ -5,6 +5,7 @@ import { Hero } from "@/components/sections/Hero";
 import { NowInEcosystem } from "@/components/sections/NowInEcosystem";
 import { PhysicalSpace } from "@/components/sections/PhysicalSpace";
 import { TwoPaths } from "@/components/sections/TwoPaths";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { siteConfig } from "@/lib/site";
 
 /** Dados estruturados (schema.org) para buscadores. */
@@ -39,11 +40,7 @@ const jsonLd = {
 export default function HomePage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        // Conteúdo 100% estático do próprio site; `<` escapado por segurança.
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-      />
+      <JsonLd data={jsonLd} />
       <main>
         <Hero />
         <EcosystemNumbers />

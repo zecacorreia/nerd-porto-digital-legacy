@@ -87,15 +87,17 @@ interface StatItemProps {
 
 function StatItem({ stat, index, featured }: StatItemProps) {
   return (
-    <li className={cn("relative pt-6", featured ? "md:col-span-3" : "md:col-span-2")}>
+    <m.li
+      className={cn("relative pt-6", featured ? "md:col-span-3" : "md:col-span-2")}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewportOnce}
+    >
       <m.span
         aria-hidden
         className="absolute inset-x-0 top-0 h-px origin-left bg-ink/25"
         variants={lineGrow}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
-        transition={{ delay: index * 0.08 }}
+        custom={index * 0.08}
       />
       <div className="flex items-start justify-between text-xs uppercase tracking-[0.2em] text-ink/50">
         <span>{String(index + 1).padStart(2, "0")}</span>
@@ -116,7 +118,7 @@ function StatItem({ stat, index, featured }: StatItemProps) {
       <FadeIn delay={0.2 + index * 0.08} distance={20}>
         <p className="mt-6 max-w-xs text-sm text-ink/60 md:text-base">{stat.description}</p>
       </FadeIn>
-    </li>
+    </m.li>
   );
 }
 

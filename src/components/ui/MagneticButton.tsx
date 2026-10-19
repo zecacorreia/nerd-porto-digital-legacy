@@ -1,7 +1,8 @@
 "use client";
 
 import { m, useMotionValue, useSpring, useTransform } from "framer-motion";
-import type { PointerEvent, ReactNode } from "react";
+import { useRouter } from "next/navigation";
+import type { MouseEvent, PointerEvent, ReactNode } from "react";
 
 import { transitions } from "@/lib/animations";
 import { cn } from "@/lib/utils";
@@ -13,6 +14,8 @@ interface MagneticButtonProps {
   /** Com `href` renderiza um link; sem, um `<button>`. */
   href?: string;
   type?: "button" | "submit";
+  /** Abre o link em nova aba (destinos externos, como o WhatsApp). */
+  external?: boolean;
   disabled?: boolean;
   variant?: MagneticVariant;
   /** Fração do deslocamento do cursor aplicada ao botão (0..1). */
@@ -45,6 +48,7 @@ export function MagneticButton({
   children,
   href,
   type = "button",
+  external = false,
   disabled = false,
   variant = "primary",
   strength = 0.35,
@@ -73,6 +77,16 @@ export function MagneticButton({
   }
 
   const styles = variantStyles[variant];
+  const router = useRouter();
+  // Rotas internas ("/membro", "/#numeros") navegam no client: sem reload nem preloader de novo.
+  const isInternalRoute = href?.startsWith("/") ?? false;
+
+  function handleClick(event: MouseEvent<HTMLAnchorElement>) {
+    if (!href || !isInternalRoute) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+    event.preventDefault();
+    router.push(href);
+  }
 
   const sharedProps = {
     "aria-label": ariaLabel,
@@ -106,7 +120,14 @@ export function MagneticButton({
   );
 
   return href ? (
-    <m.a href={href} {...sharedProps}>
+    <m.a
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      onClick={handleClick}
+      onMouseEnter={isInternalRoute ? () => router.prefetch(href) : undefined}
+      {...sharedProps}
+    >
       {content}
     </m.a>
   ) : (

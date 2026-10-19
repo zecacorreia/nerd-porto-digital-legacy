@@ -55,10 +55,16 @@ export const clipReveal: Variants = {
   visible: { clipPath: "inset(0% 0% 0% 0%)", transition: { duration: 1.2, ease: EASE_IN_OUT_QUART } },
 };
 
-/** Linha que cresce da esquerda para a direita. */
+/**
+ * Linha que cresce da esquerda para a direita. Use `custom` para o atraso (s).
+ * Dispare pelo PAI (initial/whileInView): com scaleX 0 a própria linha não tem área visível.
+ */
 export const lineGrow: Variants = {
   hidden: { scaleX: 0 },
-  visible: { scaleX: 1, transition: { duration: 1.2, ease: EASE_OUT_EXPO } },
+  visible: (delay: number = 0) => ({
+    scaleX: 1,
+    transition: { duration: 1.2, ease: EASE_OUT_EXPO, delay },
+  }),
 };
 
 /** Letra individual do texto escalonado. */

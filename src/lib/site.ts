@@ -44,6 +44,16 @@ export const siteConfig = {
   },
 } as const;
 
+/** WhatsApp oficial do NERD ("Falar com especialista"), conforme nerd.portodigital.org. */
+const WHATSAPP_NUMBER = "5581994883786";
+
+export function whatsappLink(message = "Olá, gostaria de conhecer mais sobre o NERD."): string {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+/** Regulamento oficial do membership (ainda não replicado neste site). */
+export const MEMBERSHIP_RULES_URL = "https://nerd.portodigital.org/regulamento";
+
 /** Geometria vetorizada do símbolo Porto Digital (viewBox 100×100), fonte: src/assets/brand/nerd-mark.svg. */
 export const MARK_PATH =
   "M60.75 17.9H82.2V38.75H60.75ZM39.3 38.75H60.75V59.55H39.3ZM17.85 59.55H82.2V80.5H60.52V70.05A10.5 10.5 0 0 0 39.52 70.05V80.5H17.85ZM60.75 38.75L50.25 38.75A10.5 10.5 0 0 0 60.75 28.25ZM60.75 38.75L71.25 38.75A10.5 10.5 0 0 0 60.75 49.25ZM39.3 59.55L28.8 59.55A10.5 10.5 0 0 0 39.3 49.05ZM60.75 59.55L71.25 59.55A10.5 10.5 0 0 1 60.75 49.05Z";
