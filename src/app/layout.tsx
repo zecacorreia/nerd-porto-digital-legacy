@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 
 import { IntroProvider } from "@/components/providers/IntroProvider";
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -19,13 +20,45 @@ const grotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "NERD · Porto Digital",
-  description:
-    "NERD, a plataforma de negócios do Porto Digital. A forma mais rápida de conectar sua empresa ao ecossistema de inovação.",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.title,
+    template: `%s · ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  keywords: [...siteConfig.keywords],
+  authors: [{ name: siteConfig.organization.name, url: siteConfig.organization.url }],
+  creator: siteConfig.organization.name,
+  publisher: siteConfig.organization.name,
+  category: "technology",
+  alternates: { canonical: "/" },
+  // A imagem vem de app/opengraph-image.tsx (Next.js injeta og:image com dimensões e alt).
+  openGraph: {
+    type: "website",
+    locale: siteConfig.locale,
+    url: "/",
+    siteName: siteConfig.name,
+    title: siteConfig.title,
+    description: siteConfig.description,
+  },
+  // Sem twitter:image explícito o X usa a og:image.
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
+  formatDetection: { telephone: false, email: false, address: false },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#07080a",
+  themeColor: siteConfig.themeColor,
+  colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
 };
