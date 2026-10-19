@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens — Porto Digital / NERD
+ * Base de alto contraste (ink/paper) com acentos elétricos.
+ * Ajuste os hex abaixo ao manual de marca oficial quando disponível.
+ */
+@theme {
+  --color-ink: #07080a;
+  --color-ink-soft: #101217;
+  --color-ink-line: #23262e;
+  --color-paper: #f2f1ec;
+  --color-paper-dim: #dcdad2;
+  /* Azul da marca Porto Digital — acento principal */
+  --color-brand: #1450ef;
+  /* Variação clara para texto pequeno/ícones sobre fundo escuro (contraste AA) */
+  --color-brand-light: #6b95ff;
+  --color-brand-deep: #0b2f9e;
+  --color-signal: #ff4b2b;
+  --color-aqua: #22e1c9;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-grotesk), var(--font-inter), ui-sans-serif, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --text-giant: clamp(5rem, 24vw, 26rem);
+  --text-mega: clamp(2.75rem, 7.5vw, 8.5rem);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background-color: var(--color-brand);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-light);
+    outline-offset: 3px;
+  }
+}
+
+/* Texto vazado para tipografia gigante decorativa */
+@utility hollow {
+  /* fill-color (e não `color`) para que `text-*` defina a cor do traço */
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px currentColor;
+}
+
+/* Granulado sutil sobre gradientes — evita banding. Estático e sem blend mode. */
+@utility noise {
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/*
+ * Borda "beam": um quadrado com gradiente cônico estático que GIRA via `rotate`
+ * (compositado na GPU). Animar o ângulo do gradiente forçaria repaint a cada frame.
+ */
+@keyframes beam-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@utility border-beam {
+  background: conic-gradient(
+    from 0deg,
+    transparent 55%,
+    var(--color-brand) 72%,
+    var(--color-brand-light) 86%,
+    transparent 100%
+  );
+  animation: beam-spin 6s linear infinite;
+}
+
+/* Pausa animações CSS de blocos fora da tela (atributo setado por usePauseOffscreen) */
+[data-offscreen="true"] .border-beam {
+  animation-play-state: paused;
+}
+
+/* Cursor customizado: esconde o nativo só em ponteiro fino */
+@media (hover: hover) and (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+
+  html.has-custom-cursor :is(input, textarea, select, [contenteditable="true"]) {
+    cursor: text !important;
+  }
+}
