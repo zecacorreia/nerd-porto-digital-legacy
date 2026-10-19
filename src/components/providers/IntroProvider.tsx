@@ -6,6 +6,7 @@ import {
   MotionConfig,
   domAnimation,
 } from "framer-motion";
+import { usePathname } from "next/navigation";
 import {
   createContext,
   useCallback,
@@ -32,8 +33,13 @@ interface IntroProviderProps {
   children: ReactNode;
 }
 
+/** Páginas documentais abrem direto, sem preloader. */
+const ROUTES_WITHOUT_PRELOADER = new Set(["/regulamento"]);
+
 export function IntroProvider({ children }: IntroProviderProps) {
-  const [isReady, setIsReady] = useState(false);
+  const pathname = usePathname();
+  // Decidido pela rota de entrada (igual no servidor e no cliente, sem divergência de hidratação).
+  const [isReady, setIsReady] = useState(() => ROUTES_WITHOUT_PRELOADER.has(pathname));
   const handleComplete = useCallback(() => setIsReady(true), []);
 
   // Sempre começa do topo e trava o scroll enquanto o preloader está na tela.

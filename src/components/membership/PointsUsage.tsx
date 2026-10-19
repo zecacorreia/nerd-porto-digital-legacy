@@ -13,13 +13,14 @@ import {
   PlusCircle,
   type LucideIcon,
 } from "lucide-react";
+import Link from "next/link";
 
 import { FadeIn } from "@/components/motion/FadeIn";
 import { SplitText } from "@/components/motion/SplitText";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { fadeUp, staggerContainer, viewportEarly } from "@/lib/animations";
 import { pointsRules, pointsUsage, type PointsRule, type UsageIcon } from "@/lib/membership";
-import { MEMBERSHIP_RULES_URL } from "@/lib/site";
+import { MEMBERSHIP_RULES_PATH } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const USAGE_ICONS: Record<UsageIcon, LucideIcon> = {
@@ -133,10 +134,8 @@ export function PointsUsage() {
         <div className="mt-20 grid gap-10 border-t border-paper/15 pt-12 md:mt-28 md:grid-cols-12">
           <FadeIn className="md:col-span-3">
             <h3 className="font-display text-2xl font-semibold tracking-tight">Regras dos pontos</h3>
-            <a
-              href={MEMBERSHIP_RULES_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={MEMBERSHIP_RULES_PATH}
               className="group mt-4 inline-flex items-center gap-1.5 text-sm text-brand-light transition-colors hover:text-paper"
             >
               Regulamento do membership
@@ -144,7 +143,7 @@ export function PointsUsage() {
                 className="h-4 w-4 transition-transform duration-500 ease-out-expo group-hover:rotate-45"
                 aria-hidden
               />
-            </a>
+            </Link>
           </FadeIn>
           <m.ul
             className="grid gap-6 sm:grid-cols-2 md:col-span-9 lg:grid-cols-4"

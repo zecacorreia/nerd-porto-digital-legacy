@@ -2,6 +2,7 @@
 
 import { AnimatePresence, m } from "framer-motion";
 import { ArrowUpRight, Check } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 import { FadeIn } from "@/components/motion/FadeIn";
@@ -17,7 +18,7 @@ import {
   type MembershipPlan,
   type PlanId,
 } from "@/lib/membership";
-import { MEMBERSHIP_RULES_URL, whatsappLink } from "@/lib/site";
+import { MEMBERSHIP_RULES_PATH, whatsappLink } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 type Billing = "annual" | "monthly";
@@ -254,10 +255,8 @@ export function Plans() {
         </div>
 
         <FadeIn className="mt-8">
-          <a
-            href={MEMBERSHIP_RULES_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={MEMBERSHIP_RULES_PATH}
             className="group inline-flex items-center gap-1.5 text-sm font-medium text-brand transition-colors hover:text-ink"
           >
             Conheça o regulamento
@@ -265,7 +264,7 @@ export function Plans() {
               className="h-4 w-4 transition-transform duration-500 ease-out-expo group-hover:rotate-45"
               aria-hidden
             />
-          </a>
+          </Link>
         </FadeIn>
       </div>
     </section>

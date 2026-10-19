@@ -51,8 +51,8 @@ export function whatsappLink(message = "Olá, gostaria de conhecer mais sobre o 
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
-/** Regulamento oficial do membership (ainda não replicado neste site). */
-export const MEMBERSHIP_RULES_URL = "https://nerd.portodigital.org/regulamento";
+/** Regulamento do membership (página interna). */
+export const MEMBERSHIP_RULES_PATH = "/regulamento";
 
 /** Geometria vetorizada do símbolo Porto Digital (viewBox 100×100), fonte: src/assets/brand/nerd-mark.svg. */
 export const MARK_PATH =

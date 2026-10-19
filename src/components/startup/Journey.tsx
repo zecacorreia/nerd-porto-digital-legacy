@@ -78,7 +78,11 @@ function StageCard({ stage, index, reached, className }: StageCardProps) {
         )}
       </div>
       <div>
-        <h3 className="font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1] tracking-[-0.03em]">
+        <h3
+          lang="pt-BR"
+          // Palavras longas ("Internacionalização") cabem pela escala; hífen automático é a rede de segurança.
+          className="hyphens-auto break-words font-display text-[clamp(1.6rem,1.9vw,2.25rem)] font-semibold leading-[1.05] tracking-[-0.03em]"
+        >
           {stage.title}
         </h3>
         <p className={cn("mt-4 text-sm md:text-base", reached ? "text-paper/65" : "text-ink/60")}>

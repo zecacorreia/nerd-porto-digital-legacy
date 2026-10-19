@@ -35,6 +35,7 @@ export const navLinks: readonly NavLink[] = [
   { label: "Governança", href: "/#governanca" },
   { label: "Para startups", href: "/startup" },
   { label: "Seja membro", href: "/membro" },
+  { label: "Regulamento", href: "/regulamento" },
   { label: "Contato", href: "#contato" },
 ];
 
