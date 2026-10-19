@@ -1,8 +1,8 @@
 "use client";
 
-import { m, useMotionValue, useMotionValueEvent, useScroll, useSpring, useTransform, type MotionValue } from "framer-motion";
+import { m, useMotionValueEvent, useTransform, type MotionValue } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import { FadeIn } from "@/components/motion/FadeIn";
 import { SplitText } from "@/components/motion/SplitText";
@@ -10,6 +10,7 @@ import { MagneticButton, type MagneticVariant } from "@/components/ui/MagneticBu
 import { PillarCard } from "@/components/ui/PillarCard";
 import { paths, type Path, type PathId } from "@/lib/content";
 import { useMediaQuery } from "@/lib/hooks";
+import { useHorizontalTrack, type HorizontalTrackMeasure } from "@/lib/useHorizontalTrack";
 import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
@@ -118,44 +119,21 @@ function HorizontalPaths() {
   const trackRef = useRef<HTMLDivElement>(null);
   const groupRefs = useRef<Partial<Record<PathId, HTMLDivElement | null>>>({});
 
-  const distance = useMotionValue(0);
-  const [sectionHeight, setSectionHeight] = useState<number>();
   // Fração do progresso em que cada caminho ocupa o centro da tela.
   const [boundaries, setBoundaries] = useState<Record<PathId, number>>({ empresas: 0.2, startups: 0.6 });
   const [active, setActive] = useState<ActivePanel>("intro");
 
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    function measure() {
-      if (!track) return;
-      const viewportW = window.innerWidth;
-      const total = Math.max(track.scrollWidth - viewportW, 1);
-      distance.set(total);
-      // Altura = distância horizontal + 1 viewport → 1px de scroll = 1px de trilho.
-      setSectionHeight(total + window.innerHeight);
-
-      const toFraction = (id: PathId) => {
-        const el = groupRefs.current[id];
-        return el ? Math.min(Math.max((el.offsetLeft - viewportW / 2) / total, 0), 1) : 0;
-      };
-      setBoundaries({ empresas: toFraction("empresas"), startups: toFraction("startups") });
-    }
-
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(track);
-    window.addEventListener("resize", measure);
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("resize", measure);
+  const measureBoundaries = useCallback(({ total, viewportWidth }: HorizontalTrackMeasure) => {
+    const toFraction = (id: PathId) => {
+      const el = groupRefs.current[id];
+      return el ? Math.min(Math.max((el.offsetLeft - viewportWidth / 2) / total, 0), 1) : 0;
     };
-  }, [distance]);
+    setBoundaries({ empresas: toFraction("empresas"), startups: toFraction("startups") });
+  }, []);
 
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
-  const rawX = useTransform(() => -scrollYProgress.get() * distance.get());
-  const x = useSpring(rawX, { stiffness: 160, damping: 32, mass: 0.3 });
+  const { x, scrollYProgress, sectionHeight } = useHorizontalTrack(sectionRef, trackRef, {
+    onMeasure: measureBoundaries,
+  });
 
   // Texto gigante de fundo corre em sentido oposto (parallax dentro do trilho).
   const outlineX = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);

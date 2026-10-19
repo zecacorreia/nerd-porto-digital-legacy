@@ -38,6 +38,7 @@ const headerLinks: readonly HeaderLink[] = [
   { label: "Como funciona", href: "#como-funciona" },
   { label: "Pixels", href: "#pixels" },
   { label: "Planos", href: "#planos" },
+  { label: "Para startups", href: "/startup" },
   { label: "Contato", href: "#contato" },
 ];
 

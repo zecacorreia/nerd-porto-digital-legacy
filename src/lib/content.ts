@@ -33,6 +33,7 @@ export const navLinks: readonly NavLink[] = [
   { label: "Caminhos", href: "/#caminhos" },
   { label: "Espaço", href: "/#espaco" },
   { label: "Governança", href: "/#governanca" },
+  { label: "Para startups", href: "/startup" },
   { label: "Seja membro", href: "/membro" },
   { label: "Contato", href: "#contato" },
 ];
@@ -42,7 +43,7 @@ export const heroContent: HeroContent = {
   title: "NERD, a plataforma de negócios do Porto Digital.",
   subtitle: "A forma mais rápida de conectar sua empresa ao ecossistema de inovação.",
   ctas: [
-    { label: "Para startups", href: "#caminhos", variant: "primary" },
+    { label: "Para startups", href: "/startup", variant: "primary" },
     { label: "Seja membro", href: "/membro", variant: "ghost" },
   ],
 };
@@ -191,7 +192,7 @@ export const paths: readonly Path[] = [
     eyebrow: "Caminho 02",
     title: "Para startups",
     intro: "Do primeiro protótipo à escala: apoio para construir, vender e captar dentro do ecossistema.",
-    cta: { label: "Para startups", href: "#contato" },
+    cta: { label: "Para startups", href: "/startup" },
     pillars: [
       {
         id: "formacao",

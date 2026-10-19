@@ -61,7 +61,7 @@ export function SplitText({
           <Fragment key={`${word}-${wordIndex}`}>
             <span
               className={cn(
-                "-mb-[0.12em] inline-block overflow-hidden pb-[0.12em] align-top",
+                "-mb-[0.12em] inline-block overflow-hidden whitespace-nowrap pb-[0.12em] align-top",
                 highlight.includes(word) && highlightClassName,
               )}
             >

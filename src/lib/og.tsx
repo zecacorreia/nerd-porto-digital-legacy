@@ -27,14 +27,13 @@ const INK = "#07080a";
 const PAPER = "#f2f1ec";
 const BRAND = siteConfig.brandColor;
 
-const fromRoot = (...parts: string[]) => join(process.cwd(), ...parts);
-
 async function loadAssets() {
+  // Caminhos literais: com segmentos dinâmicos o bundler rastrearia o projeto inteiro no deploy.
   const [groteskBold, groteskMedium, interRegular, wordmark] = await Promise.all([
-    readFile(fromRoot("node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff")),
-    readFile(fromRoot("node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff")),
-    readFile(fromRoot("node_modules/@fontsource/inter/files/inter-latin-400-normal.woff")),
-    readFile(fromRoot("src/assets/brand/porto-digital-nerd-white.png")),
+    readFile(join(process.cwd(), "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff")),
+    readFile(join(process.cwd(), "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff")),
+    readFile(join(process.cwd(), "node_modules/@fontsource/inter/files/inter-latin-400-normal.woff")),
+    readFile(join(process.cwd(), "src/assets/brand/porto-digital-nerd-white.png")),
   ]);
   return {
     groteskBold,
