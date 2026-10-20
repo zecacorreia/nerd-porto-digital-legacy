@@ -109,7 +109,7 @@ export function CustomCursor() {
       <m.div
         aria-hidden
         className={cn(
-          "pointer-events-none fixed left-0 top-0 z-[110]",
+          "pointer-events-none fixed left-0 top-0 z-[110] print:hidden",
           variant !== "label" && "mix-blend-difference",
         )}
         style={{ x: ringX, y: ringY }}
@@ -143,7 +143,7 @@ export function CustomCursor() {
       {/* Ponto preciso, sem atraso */}
       <m.div
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[111] mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-[111] mix-blend-difference print:hidden"
         style={{ x, y }}
       >
         <m.div

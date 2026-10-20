@@ -12,7 +12,7 @@ export function RegBlocks({ blocks }: { blocks: readonly RegBlock[] }) {
 
           case "subheading":
             return (
-              <h4 key={key} className="mt-4 font-display text-lg font-semibold tracking-tight text-ink">
+              <h4 key={key} className="mt-4 font-display text-lg font-semibold tracking-tight text-ink print:mt-2 print:text-[11pt]">
                 {block.text}
               </h4>
             );
@@ -54,12 +54,12 @@ export function RegBlocks({ blocks }: { blocks: readonly RegBlock[] }) {
 
           case "table":
             return (
-              <div key={key} className="overflow-x-auto rounded-2xl border border-ink/10">
-                <table className="w-full min-w-[28rem] border-collapse text-left text-sm">
-                  <thead className="bg-ink text-paper">
+              <div key={key} className="overflow-x-auto rounded-2xl border border-ink/10 print:overflow-visible print:rounded-none print:border-ink/30">
+                <table className="w-full min-w-[28rem] border-collapse text-left text-sm print:min-w-0 print:text-[9.5pt]">
+                  <thead className="bg-ink text-paper print:border-b-2 print:border-ink print:bg-transparent print:text-ink">
                     <tr>
                       {block.head.map((cell) => (
-                        <th key={cell} scope="col" className="px-4 py-3 font-medium">
+                        <th key={cell} scope="col" className="px-4 py-3 font-medium print:px-3 print:py-1.5 print:font-semibold">
                           {cell}
                         </th>
                       ))}
@@ -67,11 +67,11 @@ export function RegBlocks({ blocks }: { blocks: readonly RegBlock[] }) {
                   </thead>
                   <tbody>
                     {block.rows.map((row) => (
-                      <tr key={row.join("|")} className="border-t border-ink/10 even:bg-paper-dim/40">
+                      <tr key={row.join("|")} className="border-t border-ink/10 even:bg-paper-dim/40 print:border-ink/20 print:even:bg-transparent">
                         {row.map((cell, cellIndex) => (
                           <td
                             key={`${cell}-${cellIndex}`}
-                            className={cellIndex === 0 ? "px-4 py-3 text-ink" : "px-4 py-3 tabular-nums"}
+                            className={cellIndex === 0 ? "px-4 py-3 text-ink print:px-3 print:py-1.5" : "px-4 py-3 tabular-nums print:px-3 print:py-1.5"}
                           >
                             {cell}
                           </td>

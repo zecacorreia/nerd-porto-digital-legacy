@@ -4,6 +4,7 @@ import Link from "next/link";
 import { SiteHeader, type HeaderLink } from "@/components/layout/SiteHeader";
 import { PrintButton } from "@/components/regulamento/PrintButton";
 import { RegBlocks } from "@/components/regulamento/RegBlocks";
+import { Logo } from "@/components/ui/Logo";
 import { regulamentoChapters, regulamentoMeta } from "@/lib/regulamento";
 import { siteConfig } from "@/lib/site";
 
@@ -31,7 +32,7 @@ const headerLinks: readonly HeaderLink[] = [
 
 /**
  * Página documental, propositalmente simples: Server Component sem animações,
- * tipografia de leitura, sumário fixo e estilos de impressão.
+ * tipografia de leitura, sumário fixo e estilos de impressão (A4, ver `.print-doc` em globals.css).
  */
 export default function RegulamentoPage() {
   return (
@@ -40,10 +41,12 @@ export default function RegulamentoPage() {
         <SiteHeader links={headerLinks} />
       </div>
 
-      <main className="bg-paper text-ink">
+      <main className="print-doc bg-paper text-ink print:bg-white">
         {/* Cabeçalho do documento */}
-        <header className="bg-ink pb-16 pt-32 text-paper md:pb-20 md:pt-40 print:bg-paper print:pt-0 print:text-ink">
-          <div className="mx-auto max-w-[1200px] px-5 md:px-10">
+        <header className="bg-ink pb-16 pt-32 text-paper md:pb-20 md:pt-40 print:bg-white print:pb-4 print:pt-0 print:text-ink">
+          <div className="mx-auto max-w-[1200px] px-5 md:px-10 print:max-w-none print:px-0">
+            {/* Assinatura em versão escura, só no papel */}
+            <Logo tone="dark" className="mb-8 hidden h-7 print:block" />
             <nav aria-label="Trilha" className="text-xs uppercase tracking-[0.2em] text-paper/50 print:hidden">
               <Link href="/membro" className="transition-colors hover:text-paper">
                 Seja membro
@@ -53,24 +56,24 @@ export default function RegulamentoPage() {
               </span>
               <span className="text-paper/80">Regulamento</span>
             </nav>
-            <p className="mt-8 text-sm text-brand-light print:text-ink/60">{regulamentoMeta.issuer}</p>
-            <h1 className="mt-3 max-w-[18ch] font-display text-[clamp(2.25rem,5vw,4.25rem)] font-semibold leading-[1] tracking-[-0.035em]">
+            <p className="mt-8 text-sm text-brand-light print:mt-0 print:text-ink/60">{regulamentoMeta.issuer}</p>
+            <h1 className="mt-3 max-w-[18ch] font-display text-[clamp(2.25rem,5vw,4.25rem)] font-semibold leading-[1] tracking-[-0.035em] print:text-[26pt]">
               {regulamentoMeta.title}
             </h1>
             <p className="mt-4 text-lg text-paper/70 print:text-ink/70">{regulamentoMeta.subtitle}</p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-8 flex flex-wrap items-center gap-3 print:mt-4">
               <span className="rounded-full bg-brand px-3.5 py-1.5 text-xs font-medium text-paper print:border print:border-ink print:bg-transparent print:text-ink">
                 {regulamentoMeta.version}
               </span>
               <PrintButton />
             </div>
-            <p className="mt-10 max-w-2xl border-l-2 border-brand pl-5 text-paper/75 print:text-ink/80">
+            <p className="mt-10 max-w-2xl border-l-2 border-brand pl-5 text-paper/75 print:mt-6 print:max-w-none print:text-ink/80">
               {regulamentoMeta.preamble}
             </p>
           </div>
         </header>
 
-        <div className="mx-auto grid max-w-[1200px] gap-12 px-5 py-16 md:px-10 md:py-24 lg:grid-cols-12">
+        <div className="mx-auto grid max-w-[1200px] gap-12 px-5 py-16 md:px-10 md:py-24 lg:grid-cols-12 print:block print:max-w-none print:px-0 print:py-6">
           {/* Sumário */}
           <nav aria-label="Sumário" className="lg:col-span-4 print:hidden">
             <div className="lg:sticky lg:top-28">
@@ -97,25 +100,28 @@ export default function RegulamentoPage() {
           </nav>
 
           {/* Corpo */}
-          <article className="flex flex-col gap-16 text-[15px] leading-relaxed text-ink/75 md:text-base lg:col-span-8">
+          <article className="flex flex-col gap-16 text-[15px] leading-relaxed text-ink/75 md:text-base lg:col-span-8 print:gap-8 print:text-[10.5pt] print:text-ink/85">
             {regulamentoChapters.map((chapter) => (
               <section key={chapter.id} id={chapter.id} aria-labelledby={`${chapter.id}-title`} className="scroll-mt-28">
-                <p className="text-xs uppercase tracking-[0.2em] text-brand">Capítulo {chapter.numeral}</p>
-                <h2
-                  id={`${chapter.id}-title`}
-                  className="mt-2 font-display text-[clamp(1.6rem,3vw,2.25rem)] font-semibold leading-tight tracking-[-0.02em] text-ink"
-                >
-                  {chapter.title}
-                </h2>
-                <div className="mt-8 flex flex-col gap-10">
+                {/* Rótulo + título juntos: nenhum dos dois fica sozinho no pé da página */}
+                <div className="keep-with-next">
+                  <p className="text-xs uppercase tracking-[0.2em] text-brand">Capítulo {chapter.numeral}</p>
+                  <h2
+                    id={`${chapter.id}-title`}
+                    className="mt-2 font-display text-[clamp(1.6rem,3vw,2.25rem)] font-semibold leading-tight tracking-[-0.02em] text-ink print:text-[16pt]"
+                  >
+                    {chapter.title}
+                  </h2>
+                </div>
+                <div className="mt-8 flex flex-col gap-10 print:mt-4 print:gap-6">
                   {chapter.articles.map((article) => (
                     <section
                       key={article.id}
                       id={article.id}
                       aria-labelledby={`${article.id}-title`}
-                      className="scroll-mt-28 border-t border-ink/10 pt-8 print:break-inside-avoid"
+                      className="scroll-mt-28 border-t border-ink/10 pt-8 print:pt-5"
                     >
-                      <h3 id={`${article.id}-title`} className="mb-4 font-display text-xl font-semibold text-ink">
+                      <h3 id={`${article.id}-title`} className="mb-4 font-display text-xl font-semibold text-ink print:mb-2 print:text-[12pt]">
                         <span className="text-brand">{article.label}</span> — {article.title}
                       </h3>
                       <RegBlocks blocks={article.blocks} />
@@ -125,8 +131,10 @@ export default function RegulamentoPage() {
               </section>
             ))}
 
-            <p className="border-t border-ink/10 pt-8 text-sm text-ink/55">
-              {regulamentoMeta.issuer} · {regulamentoMeta.place} — {regulamentoMeta.version}
+            <p className="border-t border-ink/10 pt-8 text-sm text-ink/55 print:break-inside-avoid">
+              {regulamentoMeta.issuer}
+              <br />
+              {regulamentoMeta.closing}
             </p>
           </article>
         </div>

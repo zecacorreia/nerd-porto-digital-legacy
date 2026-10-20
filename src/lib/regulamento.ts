@@ -33,6 +33,8 @@ export const regulamentoMeta = {
   subtitle: "Anexo I ao Termo de Adesão NERD Membership",
   version: "Versão 2 — julho/2026",
   place: "Recife/PE",
+  /** Linha de fechamento, como no documento oficial. */
+  closing: "Recife/PE — Versão 2, julho/2026",
   preamble:
     "Este Regulamento integra o Termo de Adesão NERD Membership e pode ser atualizado pela CONTRATADA mediante comunicação formal ao membro, sem necessidade de aditivo contratual, nas condições previstas no Capítulo V.",
 } as const;
