@@ -48,7 +48,7 @@ export function Hero() {
         style={{ x: giantX, y: giantY }}
       >
         <m.span
-          className="hollow block pl-[3vw] font-display text-giant font-bold leading-none tracking-[-0.06em] text-paper/20"
+          className="hollow block pl-[3vw] font-display text-giant font-bold leading-none tracking-[-0.02em] text-paper/20"
           initial={{ opacity: 0, y: "20%" }}
           animate={isReady ? { opacity: 1, y: "0%" } : undefined}
           transition={{ duration: 1.6, ease: EASE_OUT_EXPO }}
@@ -65,7 +65,7 @@ export function Hero() {
         <a href="#topo" aria-label="Porto Digital NERD — início">
           <Logo priority className="h-6 md:h-8" />
         </a>
-        <span className="text-[11px] uppercase tracking-[0.25em] text-paper/60">{heroContent.eyebrow}</span>
+        <span className="text-[11px] uppercase tracking-[0.12em] text-paper/60">{heroContent.eyebrow}</span>
       </m.div>
 
       <m.div
@@ -79,7 +79,7 @@ export function Hero() {
           play={isReady}
           delay={0.25}
           stagger={0.018}
-          className="max-w-[17ch] font-display text-[clamp(2.5rem,6.2vw,7rem)] font-semibold leading-[0.95] tracking-[-0.035em]"
+          className="max-w-[17ch] font-display text-[clamp(2.5rem,6.2vw,7rem)] font-semibold leading-[0.95] tracking-[-0.02em]"
         />
 
         <div className="mt-8 flex flex-col gap-8 md:mt-12 md:flex-row md:items-end md:justify-between">

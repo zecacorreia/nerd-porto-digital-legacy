@@ -26,19 +26,19 @@ const scanPosition = (progress: number, total: number, viewportWidth: number) =>
 function SectionIntro({ compact = false }: { compact?: boolean }) {
   return (
     <div>
-      <span className="text-xs uppercase tracking-[0.25em] text-ink/50">(01) — Talentos</span>
+      <span className="text-xs uppercase tracking-[0.12em] text-ink/50">(01) — Talentos</span>
       <SplitText
         as="h2"
         trigger="inView"
         text="Formação Empreendedora"
         highlight={["Empreendedora"]}
         className={cn(
-          "mt-6 font-display font-semibold leading-[0.92] tracking-[-0.04em]",
+          "mt-6 font-display font-semibold leading-[0.92] tracking-[-0.02em]",
           compact ? "text-mega" : "text-[clamp(3rem,5vw,5.75rem)]",
         )}
       />
       <p className="mt-8 max-w-md text-base text-ink/60 md:text-lg">{formacaoIntro}</p>
-      <p className="mt-10 flex items-center gap-3 text-sm uppercase tracking-[0.2em] text-ink/50">
+      <p className="mt-10 flex items-center gap-3 text-sm uppercase tracking-[0.12em] text-ink/50">
         A jornada, etapa por etapa
         {!compact && <ArrowRight className="h-4 w-4" aria-hidden />}
       </p>
@@ -57,7 +57,7 @@ function StageCard({ stage, index, reached, className }: StageCardProps) {
   return (
     <article
       className={cn(
-        "flex flex-col justify-between gap-10 rounded-3xl p-7 transition-colors duration-700 md:p-9",
+        "flex flex-col justify-between gap-10 rounded-large p-7 transition-colors duration-700 md:p-9",
         reached ? "bg-ink text-paper" : "bg-paper-dim text-ink",
         className,
       )}
@@ -69,7 +69,7 @@ function StageCard({ stage, index, reached, className }: StageCardProps) {
         {stage.phase && (
           <span
             className={cn(
-              "rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors duration-700",
+              "rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] transition-colors duration-700",
               reached ? "bg-brand text-paper" : "bg-ink/10 text-ink",
             )}
           >
@@ -81,7 +81,7 @@ function StageCard({ stage, index, reached, className }: StageCardProps) {
         <h3
           lang="pt-BR"
           // Palavras longas ("Internacionalização") cabem pela escala; hífen automático é a rede de segurança.
-          className="hyphens-auto break-words font-display text-[clamp(1.6rem,1.9vw,2.25rem)] font-semibold leading-[1.05] tracking-[-0.03em]"
+          className="hyphens-auto break-words font-display text-[clamp(1.6rem,1.9vw,2.25rem)] font-semibold leading-[1.05] tracking-[-0.02em]"
         >
           {stage.title}
         </h3>
@@ -183,7 +183,7 @@ function HorizontalJourney() {
                   <m.span
                     aria-hidden
                     className="absolute -top-[7px] left-8 h-3.5 w-3.5 rounded-full border-2 border-brand"
-                    animate={{ backgroundColor: reached ? "#1450ef" : "#f2f1ec", scale: reached ? 1.25 : 1 }}
+                    animate={{ backgroundColor: reached ? "#1450ef" : "#f7fcfb", scale: reached ? 1.25 : 1 }}
                     transition={transitions.fast}
                   />
                   <StageCard stage={stage} index={index} reached={reached} className="h-full" />

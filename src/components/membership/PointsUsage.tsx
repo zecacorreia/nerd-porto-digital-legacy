@@ -49,7 +49,7 @@ export function PointsUsage() {
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <header className="grid gap-8 md:grid-cols-12 md:items-end">
           <FadeIn className="md:col-span-3">
-            <span className="text-xs uppercase tracking-[0.25em] text-paper/50">(02) — Pixels NERD</span>
+            <span className="text-xs uppercase tracking-[0.12em] text-paper/50">(02) — Pixels NERD</span>
           </FadeIn>
           <div className="md:col-span-6">
             <SplitText
@@ -57,7 +57,7 @@ export function PointsUsage() {
               trigger="inView"
               text="Uma carteira, três formas de usar."
               highlight={["três"]}
-              className="font-display text-mega font-semibold leading-[0.92] tracking-[-0.04em]"
+              className="font-display text-mega font-semibold leading-[0.92] tracking-[-0.02em]"
             />
           </div>
           <FadeIn className="md:col-span-3" delay={0.2}>
@@ -86,15 +86,15 @@ export function PointsUsage() {
                   innerClassName="flex flex-col justify-between gap-10 p-6 md:p-8"
                 >
                   <div className="flex items-start justify-between">
-                    <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-paper">
+                    <span className="flex h-14 w-14 items-center justify-center rounded-large bg-brand text-paper">
                       <Icon className="h-6 w-6" aria-hidden />
                     </span>
-                    <span className="text-xs uppercase tracking-[0.2em] text-paper/40">{usage.items.length} opções</span>
+                    <span className="text-xs uppercase tracking-[0.12em] text-paper/40">{usage.items.length} opções</span>
                   </div>
                   <div>
                     <h3
                       className={cn(
-                        "font-display font-semibold leading-none tracking-[-0.03em]",
+                        "font-display font-semibold leading-none tracking-[-0.02em]",
                         tall ? "text-[clamp(3rem,6vw,5.5rem)]" : "text-3xl md:text-4xl",
                       )}
                     >
@@ -116,14 +116,14 @@ export function PointsUsage() {
 
           {/* Eventos: incluídos sem consumir pontos */}
           <m.li variants={fadeUp} className="md:col-span-6">
-            <div className="flex h-full flex-col gap-6 rounded-3xl bg-brand p-6 text-paper md:flex-row md:items-center md:justify-between md:p-10">
+            <div className="flex h-full flex-col gap-6 rounded-large bg-brand p-6 text-paper md:flex-row md:items-center md:justify-between md:p-10">
               <div className="flex items-center gap-5">
                 <CalendarCheck2 className="h-10 w-10 shrink-0" aria-hidden />
-                <p className="font-display text-[clamp(1.75rem,3.5vw,3rem)] font-semibold leading-[1] tracking-[-0.03em]">
+                <p className="font-display text-[clamp(1.75rem,3.5vw,3rem)] font-semibold leading-[1] tracking-[-0.02em]">
                   Eventos abertos e exclusivos para membros, sem consumir pontos.
                 </p>
               </div>
-              <span className="shrink-0 rounded-full bg-paper px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand">
+              <span className="shrink-0 rounded-full bg-paper px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-brand">
                 Incluído em todos os planos
               </span>
             </div>

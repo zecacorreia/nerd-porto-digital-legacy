@@ -17,7 +17,7 @@ export const siteConfig = {
     "NERD, a plataforma de negócios do Porto Digital. A forma mais rápida de conectar sua empresa ao ecossistema de inovação.",
   url: resolveSiteUrl(),
   locale: "pt_BR",
-  themeColor: "#07080a",
+  themeColor: "#191919",
   brandColor: "#1450ef",
   keywords: [
     "NERD",

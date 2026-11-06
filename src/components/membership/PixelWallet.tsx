@@ -34,18 +34,18 @@ export function PixelWallet() {
   }, [plan.points, points, reduceMotion]);
 
   return (
-    <div className="rounded-3xl border border-paper/10 bg-ink-soft p-6 md:p-8">
+    <div className="rounded-large border border-paper/10 bg-ink-soft p-6 md:p-8">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-xs uppercase tracking-[0.25em] text-paper/50">Carteira anual</p>
-          <p className="mt-3 flex items-baseline gap-2 font-display font-semibold tracking-[-0.04em]">
+          <p className="text-xs uppercase tracking-[0.12em] text-paper/50">Carteira anual</p>
+          <p className="mt-3 flex items-baseline gap-2 font-display font-semibold tracking-[-0.02em]">
             <m.span className="text-6xl tabular-nums md:text-7xl" aria-live="polite">
               {display}
             </m.span>
             <span className="text-lg text-brand-light">Pixels</span>
           </p>
         </div>
-        <span className="rounded-full bg-brand px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-paper">
+        <span className="rounded-full bg-brand px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-paper">
           {plan.tier}
         </span>
       </div>
@@ -81,7 +81,7 @@ export function PixelWallet() {
               aria-checked={active}
               onClick={() => setPlanId(item.id)}
               className={cn(
-                "rounded-2xl border px-3 py-3 text-left transition-colors duration-300",
+                "rounded-large border px-3 py-3 text-left transition-colors duration-300",
                 active ? "border-brand bg-brand/15" : "border-paper/10 hover:border-paper/30",
               )}
             >

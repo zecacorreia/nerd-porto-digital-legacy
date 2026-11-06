@@ -39,7 +39,7 @@ function FeaturedArt() {
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
       <m.div
-        className="absolute -bottom-44 right-1/4 h-[28rem] w-[28rem] bg-[radial-gradient(closest-side,rgb(107_149_255/0.22),transparent)]"
+        className="absolute -bottom-44 right-1/4 h-[28rem] w-[28rem] bg-[radial-gradient(closest-side,rgb(1_163_248/0.22),transparent)]"
         animate={playing ? { scale: [1, 1.2, 1], y: [0, -20, 0] } : undefined}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
@@ -52,7 +52,7 @@ function FeaturedArt() {
           transition={{ duration: 40 + ring * 10, repeat: Infinity, ease: "linear" }}
         />
       ))}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgb(242_241_236/0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgb(242_241_236/0.05)_1px,transparent_1px)] bg-[size:56px_56px] [mask-image:linear-gradient(to_bottom_left,black,transparent_70%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgb(247_252_251/0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgb(247_252_251/0.05)_1px,transparent_1px)] bg-[size:56px_56px] [mask-image:linear-gradient(to_bottom_left,black,transparent_70%)]" />
     </div>
   );
 }
@@ -77,7 +77,7 @@ export function EventCard({ item, className }: EventCardProps) {
         <div className="flex items-start justify-between gap-4">
           <span
             className={cn(
-              "inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em]",
+              "inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em]",
               meta.accent,
             )}
           >
@@ -92,7 +92,7 @@ export function EventCard({ item, className }: EventCardProps) {
 
         <div>
           {featured && (
-            <span className="mb-4 flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-brand-light">
+            <span className="mb-4 flex items-center gap-2 text-xs uppercase tracking-[0.12em] text-brand-light">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-light opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-light" />
@@ -102,7 +102,7 @@ export function EventCard({ item, className }: EventCardProps) {
           )}
           <h3
             className={cn(
-              "font-display font-semibold leading-[0.95] tracking-[-0.03em]",
+              "font-display font-semibold leading-[0.95] tracking-[-0.02em]",
               featured ? "text-[clamp(3rem,7vw,7.5rem)]" : "text-2xl md:text-3xl",
             )}
           >

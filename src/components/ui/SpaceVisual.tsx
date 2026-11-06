@@ -16,9 +16,9 @@ function SpaceScene({ space }: { space: SpaceItem }) {
   return (
     <div
       className="absolute inset-0"
-      style={{ background: `radial-gradient(120% 90% at 85% 15%, ${to} 0%, ${from} 60%, #07080a 100%)` }}
+      style={{ background: `radial-gradient(120% 90% at 85% 15%, ${to} 0%, ${from} 60%, #191919 100%)` }}
     >
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgb(242_241_236/0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgb(242_241_236/0.07)_1px,transparent_1px)] bg-[size:64px_64px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgb(247_252_251/0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgb(247_252_251/0.07)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
       {/* Andares empilhados em perspectiva */}
       <div className="absolute right-[8%] top-1/2 w-[46%] -translate-y-1/2 [perspective:900px] lg:left-[36%] lg:right-auto lg:w-[26%]">
@@ -33,7 +33,7 @@ function SpaceScene({ space }: { space: SpaceItem }) {
             {Array.from({ length: FLOORS }, (_, i) => (
               <m.div
                 key={i}
-                className="h-14 rounded-xl border md:h-20"
+                className="h-14 rounded-medium border md:h-20"
                 style={{
                   borderColor: accent,
                   marginLeft: `${(FLOORS - 1 - i) * 6}%`,
@@ -51,7 +51,7 @@ function SpaceScene({ space }: { space: SpaceItem }) {
 
       <span
         aria-hidden
-        className="hollow absolute -bottom-[0.15em] left-0 select-none whitespace-nowrap font-display text-[18vw] font-bold uppercase leading-none tracking-[-0.06em] text-paper/20 lg:text-[12vw]"
+        className="hollow absolute -bottom-[0.15em] left-0 select-none whitespace-nowrap font-display text-[18vw] font-bold uppercase leading-none tracking-[-0.02em] text-paper/20 lg:text-[12vw]"
       >
         {space.name}
       </span>

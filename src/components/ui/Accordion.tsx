@@ -54,11 +54,11 @@ export function Accordion({ items, defaultOpenId = null, className }: AccordionP
                 <span className="w-8 font-display text-sm tabular-nums opacity-40">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <span className="font-display text-[clamp(1.75rem,4vw,3.5rem)] font-semibold leading-none tracking-[-0.03em] transition-transform duration-500 ease-out-expo group-hover:translate-x-2">
+                <span className="font-display text-[clamp(1.75rem,4vw,3.5rem)] font-semibold leading-none tracking-[-0.02em] transition-transform duration-500 ease-out-expo group-hover:translate-x-2">
                   {item.title}
                 </span>
                 {item.meta && (
-                  <span className="ml-auto hidden text-xs uppercase tracking-[0.2em] opacity-50 md:block">
+                  <span className="ml-auto hidden text-xs uppercase tracking-[0.12em] opacity-50 md:block">
                     {item.meta}
                   </span>
                 )}

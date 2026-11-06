@@ -57,8 +57,8 @@ function PathHeader({ path, className }: PathHeaderProps) {
   const theme = PATH_THEMES[path.id];
   return (
     <div className={cn("flex flex-col", className)}>
-      <span className={cn("text-xs uppercase tracking-[0.25em]", theme.muted)}>{path.eyebrow}</span>
-      <h3 className="mt-6 font-display text-[clamp(3.25rem,8vw,9rem)] font-semibold leading-[0.88] tracking-[-0.045em]">
+      <span className={cn("text-xs uppercase tracking-[0.12em]", theme.muted)}>{path.eyebrow}</span>
+      <h3 className="mt-6 font-display text-[clamp(3.25rem,8vw,9rem)] font-semibold leading-[0.88] tracking-[-0.02em]">
         {path.title.split(" ")[0]} <span className={theme.accent}>{path.title.split(" ").slice(1).join(" ")}</span>
       </h3>
       <p className={cn("mt-8 max-w-md text-base md:text-lg", theme.muted)}>{path.intro}</p>
@@ -100,7 +100,7 @@ function ProgressHud({ progress, active }: ProgressHudProps) {
         <span
           key={path.id}
           className={cn(
-            "text-xs uppercase tracking-[0.25em] transition-opacity duration-500",
+            "text-xs uppercase tracking-[0.12em] transition-opacity duration-500",
             active === path.id ? "opacity-100" : "opacity-40",
           )}
         >
@@ -156,15 +156,15 @@ function HorizontalPaths() {
         <m.div ref={trackRef} className="flex h-full w-max will-change-transform" style={{ x }}>
           {/* Painel de abertura */}
           <div className="relative flex h-full w-screen shrink-0 flex-col justify-center bg-ink px-10 text-paper">
-            <span className="text-xs uppercase tracking-[0.25em] text-paper/50">(03) — Dois caminhos</span>
+            <span className="text-xs uppercase tracking-[0.12em] text-paper/50">(03) — Dois caminhos</span>
             <SplitText
               as="h2"
               trigger="inView"
               text={SECTION_TITLE}
               highlight={["um", "ecossistema."]}
-              className="mt-6 max-w-[12ch] font-display text-[clamp(3.5rem,9vw,10rem)] font-semibold leading-[0.9] tracking-[-0.045em]"
+              className="mt-6 max-w-[12ch] font-display text-[clamp(3.5rem,9vw,10rem)] font-semibold leading-[0.9] tracking-[-0.02em]"
             />
-            <FadeIn delay={0.4} className="mt-12 flex items-center gap-4 text-sm uppercase tracking-[0.2em] text-paper/60">
+            <FadeIn delay={0.4} className="mt-12 flex items-center gap-4 text-sm uppercase tracking-[0.12em] text-paper/60">
               Role para explorar
               <m.span
                 animate={{ x: [0, 10, 0] }}
@@ -188,7 +188,7 @@ function HorizontalPaths() {
                 <m.span
                   aria-hidden
                   className={cn(
-                    "hollow pointer-events-none absolute bottom-[-0.12em] left-0 select-none whitespace-nowrap font-display text-[22vw] font-bold uppercase leading-none tracking-[-0.06em]",
+                    "hollow pointer-events-none absolute bottom-[-0.12em] left-0 select-none whitespace-nowrap font-display text-[22vw] font-bold uppercase leading-none tracking-[-0.02em]",
                     theme.outline,
                   )}
                   style={{ x: outlineX }}
@@ -226,13 +226,13 @@ function StackedPaths() {
   return (
     <section id="caminhos" aria-label="Dois caminhos: para empresas e para startups" className="bg-ink">
       <div className="px-5 py-24 text-paper md:px-10">
-        <span className="text-xs uppercase tracking-[0.25em] text-paper/50">(03) — Dois caminhos</span>
+        <span className="text-xs uppercase tracking-[0.12em] text-paper/50">(03) — Dois caminhos</span>
         <SplitText
           as="h2"
           trigger="inView"
           text={SECTION_TITLE}
           highlight={["um", "ecossistema."]}
-          className="mt-6 font-display text-mega font-semibold leading-[0.92] tracking-[-0.04em]"
+          className="mt-6 font-display text-mega font-semibold leading-[0.92] tracking-[-0.02em]"
         />
       </div>
 

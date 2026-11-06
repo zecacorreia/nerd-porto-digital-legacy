@@ -30,7 +30,7 @@ export function TiltCard({
   className,
   innerClassName,
   maxTilt = 8,
-  glowColor = "rgb(107 149 255 / 0.9)",
+  glowColor = "rgb(1 163 248 / 0.9)",
   beam = false,
 }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -49,7 +49,7 @@ export function TiltCard({
   const glowOpacity = useSpring(0, { stiffness: 200, damping: 30 });
 
   const borderGlow = useMotionTemplate`radial-gradient(280px circle at ${pointerX}px ${pointerY}px, ${glowColor}, transparent 70%)`;
-  const spotlight = useMotionTemplate`radial-gradient(520px circle at ${pointerX}px ${pointerY}px, rgb(242 241 236 / 0.07), transparent 60%)`;
+  const spotlight = useMotionTemplate`radial-gradient(520px circle at ${pointerX}px ${pointerY}px, rgb(247 252 251 / 0.07), transparent 60%)`;
 
   function handlePointerMove(event: PointerEvent<HTMLDivElement>) {
     if (event.pointerType !== "mouse" || !ref.current) return;
@@ -79,7 +79,7 @@ export function TiltCard({
           ? undefined
           : { rotateX, rotateY, transformPerspective: 1100, transformStyle: "preserve-3d" }
       }
-      className={cn("group/tilt relative isolate rounded-3xl bg-ink-line p-px", className)}
+      className={cn("group/tilt relative isolate rounded-large bg-ink-line p-px", className)}
     >
       {beam && (
         <span

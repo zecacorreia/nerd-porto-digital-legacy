@@ -32,7 +32,7 @@ const BLOBS: readonly GradientBlob[] = [
   {
     id: "brand-deep",
     className: "right-[-30%] top-[0%] h-[75vmax] w-[75vmax]",
-    color: "rgb(11 47 158 / 0.8)",
+    color: "rgb(14 0 75 / 0.8)",
     depth: -40,
     drift: { x: [0, -60, 40, 0], y: [0, 80, -30, 0], scale: [1, 0.9, 1.15, 1] },
     duration: 26,
@@ -40,7 +40,7 @@ const BLOBS: readonly GradientBlob[] = [
   {
     id: "brand-light",
     className: "bottom-[-45%] left-[15%] h-[70vmax] w-[70vmax]",
-    color: "rgb(107 149 255 / 0.4)",
+    color: "rgb(1 163 248 / 0.4)",
     depth: 90,
     drift: { x: [0, 50, -70, 0], y: [0, -50, 20, 0], scale: [1, 1.2, 1, 1] },
     duration: 30,
@@ -114,7 +114,7 @@ export function MeshGradient({ className }: MeshGradientProps) {
         <BlobLayer key={blob.id} blob={blob} pointerX={pointerX} pointerY={pointerY} playing={isVisible} />
       ))}
       {/* Grid técnico com fade radial (estático) */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgb(242_241_236/0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgb(242_241_236/0.06)_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_75%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgb(247_252_251/0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgb(247_252_251/0.06)_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_75%)]" />
       {/* Granulado estático, sem blend mode (evita recomposição a cada frame) */}
       <div className="noise absolute inset-0" />
       {/* Vinheta para legibilidade do texto */}

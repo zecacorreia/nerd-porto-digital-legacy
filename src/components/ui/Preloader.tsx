@@ -40,7 +40,7 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
       initial={{ clipPath: "inset(0% 0% 0% 0%)" }}
       exit={{ clipPath: "inset(0% 0% 100% 0%)", transition: transitions.curtain }}
     >
-      <div className="flex items-center justify-between text-xs uppercase tracking-[0.25em] text-paper/60">
+      <div className="flex items-center justify-between text-xs uppercase tracking-[0.12em] text-paper/60">
         <Logo priority className="h-5 md:h-6" />
         <span>Recife — PE</span>
       </div>
@@ -59,7 +59,7 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
         </m.span>
         <m.span
           aria-hidden
-          className="flex overflow-hidden font-display text-[clamp(4.5rem,18vw,16rem)] font-bold leading-[0.85] tracking-[-0.05em]"
+          className="flex overflow-hidden font-display text-[clamp(4.5rem,18vw,16rem)] font-bold leading-[0.85] tracking-[-0.02em]"
           variants={staggerContainer({ stagger: 0.08, delay: 0.1 })}
           initial="hidden"
           animate="visible"

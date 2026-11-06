@@ -23,8 +23,8 @@ export interface OgImageOptions {
   cta: string;
 }
 
-const INK = "#07080a";
-const PAPER = "#f2f1ec";
+const INK = "#191919";
+const PAPER = "#f7fcfb";
 const BRAND = siteConfig.brandColor;
 
 async function loadAssets() {
@@ -139,7 +139,7 @@ export async function renderOgImage({
               ...headline.split(" ").map((word) => ({ word, accent: false })),
               ...accent.split(" ").map((word) => ({ word, accent: true })),
             ].map(({ word, accent: isAccent }, index) => (
-              <span key={`${word}-${index}`} style={{ marginRight: 12, color: isAccent ? "#6b95ff" : undefined }}>
+              <span key={`${word}-${index}`} style={{ marginRight: 12, color: isAccent ? "#01a3f8" : undefined }}>
                 {word}
               </span>
             ))}

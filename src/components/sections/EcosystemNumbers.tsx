@@ -99,14 +99,14 @@ function StatItem({ stat, index, featured }: StatItemProps) {
         variants={lineGrow}
         custom={index * 0.08}
       />
-      <div className="flex items-start justify-between text-xs uppercase tracking-[0.2em] text-ink/50">
+      <div className="flex items-start justify-between text-xs uppercase tracking-[0.12em] text-ink/50">
         <span>{String(index + 1).padStart(2, "0")}</span>
         <span>{stat.label}</span>
       </div>
 
       <p
         className={cn(
-          "mt-6 flex items-baseline font-display font-semibold leading-[0.85] tracking-[-0.05em]",
+          "mt-6 flex items-baseline font-display font-semibold leading-[0.85] tracking-[-0.02em]",
           featured ? "text-[clamp(5rem,14vw,13rem)]" : "text-[clamp(4rem,10vw,9rem)]",
         )}
       >
@@ -145,7 +145,7 @@ export function EcosystemNumbers() {
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <header className="grid gap-8 md:grid-cols-12">
           <FadeIn className="md:col-span-3">
-            <span className="text-xs uppercase tracking-[0.25em] text-ink/50">(01) — Ecossistema</span>
+            <span className="text-xs uppercase tracking-[0.12em] text-ink/50">(01) — Ecossistema</span>
           </FadeIn>
           <div className="md:col-span-9">
             <SplitText
@@ -154,7 +154,7 @@ export function EcosystemNumbers() {
               text="Um ecossistema que não para de crescer."
               highlight={["crescer."]}
               highlightClassName="text-brand"
-              className="font-display text-mega font-semibold leading-[0.92] tracking-[-0.04em]"
+              className="font-display text-mega font-semibold leading-[0.92] tracking-[-0.02em]"
             />
           </div>
         </header>
@@ -168,13 +168,13 @@ export function EcosystemNumbers() {
 
       <div aria-hidden className="mt-24 select-none overflow-hidden md:mt-40">
         <m.p
-          className="whitespace-nowrap font-display text-[clamp(3rem,10vw,10rem)] font-bold uppercase leading-none tracking-[-0.04em]"
+          className="whitespace-nowrap font-display text-[clamp(3rem,10vw,10rem)] font-bold uppercase leading-none tracking-[-0.02em]"
           style={{ x: marqueeA }}
         >
           Recife · Brasil · Portugal · Recife · Brasil · Portugal
         </m.p>
         <m.p
-          className="hollow whitespace-nowrap font-display text-[clamp(3rem,10vw,10rem)] font-bold uppercase leading-none tracking-[-0.04em] text-ink/40"
+          className="hollow whitespace-nowrap font-display text-[clamp(3rem,10vw,10rem)] font-bold uppercase leading-none tracking-[-0.02em] text-ink/40"
           style={{ x: marqueeB }}
         >
           Inovação · Negócios · Talentos · Inovação · Negócios · Talentos

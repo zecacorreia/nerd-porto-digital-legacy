@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Montserrat, Plus_Jakarta_Sans } from "next/font/google";
 import type { ReactNode } from "react";
 
 import { IntroProvider } from "@/components/providers/IntroProvider";
@@ -7,15 +7,16 @@ import { CustomCursor } from "@/components/ui/CustomCursor";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
-const inter = Inter({
+/* RIZOMA DS: Plus Jakarta Sans (Display/Heading) + Montserrat (Label/Paragraph). Variáveis: qualquer peso. */
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-jakarta",
   display: "swap",
 });
 
-const grotesk = Space_Grotesk({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-grotesk",
+  variable: "--font-montserrat",
   display: "swap",
 });
 
@@ -69,7 +70,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${grotesk.variable}`}>
+    <html lang="pt-BR" className={`${jakarta.variable} ${montserrat.variable}`}>
       <body>
         <IntroProvider>
           {children}

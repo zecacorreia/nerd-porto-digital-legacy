@@ -52,14 +52,14 @@ export function PhysicalSpace() {
         <div className="flex flex-col justify-between gap-12 lg:col-span-6">
           <div>
             <FadeIn>
-              <span className="text-xs uppercase tracking-[0.25em] text-paper/50">(04) — O espaço</span>
+              <span className="text-xs uppercase tracking-[0.12em] text-paper/50">(04) — O espaço</span>
             </FadeIn>
             <SplitText
               as="h2"
               trigger="inView"
               text="Um prédio inteiro no coração do Recife."
               highlight={["Recife."]}
-              className="mt-6 max-w-[13ch] font-display text-mega font-semibold leading-[0.92] tracking-[-0.04em]"
+              className="mt-6 max-w-[13ch] font-display text-mega font-semibold leading-[0.92] tracking-[-0.02em]"
             />
           </div>
 
@@ -69,7 +69,7 @@ export function PhysicalSpace() {
                 <dt className="sr-only">{fact.label}</dt>
                 <dd>
                   {fact.value !== undefined ? (
-                    <span className="flex items-baseline font-display text-5xl font-semibold tracking-[-0.04em] md:text-6xl">
+                    <span className="flex items-baseline font-display text-5xl font-semibold tracking-[-0.02em] md:text-6xl">
                       <AnimatedCounter value={fact.value} delay={index * 0.15} />
                       {fact.suffix && <span className="ml-1 text-[0.45em] text-brand-light">{fact.suffix}</span>}
                     </span>
@@ -86,7 +86,7 @@ export function PhysicalSpace() {
         {/* Visual: caixa no mobile, fundo de tela inteira no desktop */}
         <SpaceVisual
           space={active}
-          className="aspect-[4/5] rounded-3xl md:aspect-[16/10] lg:absolute lg:inset-0 lg:-z-10 lg:aspect-auto lg:rounded-none"
+          className="aspect-[4/5] rounded-large md:aspect-[16/10] lg:absolute lg:inset-0 lg:-z-10 lg:aspect-auto lg:rounded-none"
         />
 
         {/* Coluna direita: lista de ambientes */}
@@ -121,7 +121,7 @@ export function PhysicalSpace() {
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <m.span
-                      className="font-display text-[clamp(1.75rem,3.6vw,3.25rem)] font-semibold leading-none tracking-[-0.03em]"
+                      className="font-display text-[clamp(1.75rem,3.6vw,3.25rem)] font-semibold leading-none tracking-[-0.02em]"
                       animate={{ x: isActive ? 12 : 0, opacity: isActive ? 1 : 0.4 }}
                       transition={transitions.fast}
                     >
@@ -156,7 +156,7 @@ export function PhysicalSpace() {
             </AnimatePresence>
           </div>
 
-          <p className="mt-10 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-paper/50">
+          <p className="mt-10 flex items-center gap-2 text-xs uppercase tracking-[0.12em] text-paper/50">
             <MapPin className="h-4 w-4" aria-hidden />
             {spaceAddress}
           </p>

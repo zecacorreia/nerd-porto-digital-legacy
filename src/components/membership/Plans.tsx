@@ -54,7 +54,7 @@ const PLAN_THEMES: Record<PlanId, PlanTheme> = {
     track: "bg-paper/10",
     bar: "bg-brand-light",
     badge: "bg-brand text-paper",
-    glow: "rgb(107 149 255 / 0.9)",
+    glow: "rgb(1 163 248 / 0.9)",
     button: "primary",
   },
   plataforma: {
@@ -122,12 +122,12 @@ function PlanCard({ plan, billing }: { plan: MembershipPlan; billing: Billing })
     >
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h3 className="font-display text-3xl font-semibold tracking-[-0.03em] md:text-4xl">{plan.name}</h3>
+          <h3 className="font-display text-3xl font-semibold tracking-[-0.02em] md:text-4xl">{plan.name}</h3>
           <p className={cn("mt-2 text-sm", theme.muted)}>{plan.description}</p>
         </div>
         <span
           className={cn(
-            "shrink-0 rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em]",
+            "shrink-0 rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em]",
             theme.badge,
           )}
         >
@@ -147,7 +147,7 @@ function PlanCard({ plan, billing }: { plan: MembershipPlan; billing: Billing })
             transition={{ duration: 0.5, ease: EASE_OUT_EXPO }}
           >
             {price.prefix && <span className={cn("text-sm", theme.muted)}>{price.prefix}</span>}
-            <span className="font-display text-5xl font-semibold tracking-[-0.04em] tabular-nums">{price.value}</span>
+            <span className="font-display text-5xl font-semibold tracking-[-0.02em] tabular-nums">{price.value}</span>
             <span className={cn("text-sm", theme.muted)}>{price.suffix}</span>
           </m.p>
         </AnimatePresence>
@@ -210,14 +210,14 @@ export function Plans() {
         <header className="grid gap-8 md:grid-cols-12 md:items-end">
           <div className="md:col-span-8">
             <FadeIn>
-              <span className="text-xs uppercase tracking-[0.25em] text-ink/50">(03) — Planos</span>
+              <span className="text-xs uppercase tracking-[0.12em] text-ink/50">(03) — Planos</span>
             </FadeIn>
             <SplitText
               as="h2"
               trigger="inView"
               text="Três formatos, conforme o estágio da sua empresa em inovação."
               highlight={["inovação."]}
-              className="mt-6 max-w-[18ch] font-display text-mega font-semibold leading-[0.92] tracking-[-0.04em]"
+              className="mt-6 max-w-[18ch] font-display text-mega font-semibold leading-[0.92] tracking-[-0.02em]"
             />
           </div>
           <FadeIn className="md:col-span-4 md:flex md:justify-end" delay={0.2}>
@@ -246,7 +246,7 @@ export function Plans() {
           </FadeIn>
           <ul className="grid gap-3 sm:grid-cols-2 md:col-span-8">
             {plansIncluded.map((item) => (
-              <li key={item} className="flex items-center gap-3 rounded-2xl bg-paper-dim/60 px-4 py-3 text-sm">
+              <li key={item} className="flex items-center gap-3 rounded-large bg-paper-dim/60 px-4 py-3 text-sm">
                 <Check className="h-4 w-4 shrink-0 text-brand" aria-hidden />
                 {item}
               </li>

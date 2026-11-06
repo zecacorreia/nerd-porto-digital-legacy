@@ -31,7 +31,7 @@ export function NowInEcosystem() {
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <header className="grid gap-8 md:grid-cols-12 md:items-end">
           <FadeIn className="md:col-span-3">
-            <span className="text-xs uppercase tracking-[0.25em] text-paper/50">(02) — Agora no ecossistema</span>
+            <span className="text-xs uppercase tracking-[0.12em] text-paper/50">(02) — Agora no ecossistema</span>
           </FadeIn>
           <div className="md:col-span-6">
             <SplitText
@@ -39,7 +39,7 @@ export function NowInEcosystem() {
               trigger="inView"
               text="O que está acontecendo agora."
               highlight={["agora."]}
-              className="font-display text-mega font-semibold leading-[0.92] tracking-[-0.04em]"
+              className="font-display text-mega font-semibold leading-[0.92] tracking-[-0.02em]"
             />
           </div>
           <FadeIn className="md:col-span-3" delay={0.2}>
@@ -84,7 +84,7 @@ export function NowInEcosystem() {
               maxTilt={4}
               innerClassName="flex flex-col justify-between gap-8 bg-paper p-6 text-ink md:flex-row md:items-end md:p-10"
             >
-              <p className="max-w-[16ch] font-display text-[clamp(2rem,4vw,3.75rem)] font-semibold leading-[0.95] tracking-[-0.03em]">
+              <p className="max-w-[16ch] font-display text-[clamp(2rem,4vw,3.75rem)] font-semibold leading-[0.95] tracking-[-0.02em]">
                 Tem um evento ou edital para o ecossistema?
               </p>
               <MagneticButton

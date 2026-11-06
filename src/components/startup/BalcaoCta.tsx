@@ -18,14 +18,14 @@ export function BalcaoCta() {
       </div>
       <div className="mx-auto flex min-h-[80svh] max-w-[1600px] flex-col justify-center px-5 py-24 md:px-10 md:py-32">
         <FadeIn>
-          <span className="text-xs uppercase tracking-[0.25em] text-brand-light">Por onde começar?</span>
+          <span className="text-xs uppercase tracking-[0.12em] text-brand-light">Por onde começar?</span>
         </FadeIn>
         <SplitText
           as="h2"
           trigger="inView"
           text="Balcão de Empreendedorismo."
           highlight={["Empreendedorismo."]}
-          className="mt-6 max-w-[14ch] font-display text-[clamp(2rem,8vw,8.5rem)] font-semibold leading-[0.9] tracking-[-0.045em]"
+          className="mt-6 max-w-[14ch] font-display text-[clamp(2rem,8vw,8.5rem)] font-semibold leading-[0.9] tracking-[-0.02em]"
         />
         <FadeIn delay={0.2}>
           <p className="mt-8 max-w-lg text-base text-paper/70 md:text-lg">

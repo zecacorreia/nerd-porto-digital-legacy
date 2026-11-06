@@ -80,7 +80,7 @@ export function PillarCard({ pillar, pathId, index, className }: PillarCardProps
       </div>
 
       <div>
-        <h4 className="font-display text-3xl font-semibold leading-[1] tracking-[-0.03em] md:text-4xl">
+        <h4 className="font-display text-3xl font-semibold leading-[1] tracking-[-0.02em] md:text-4xl">
           {pillar.title}
         </h4>
         <p className={cn("mt-4 text-sm md:text-base", theme.muted)}>{pillar.description}</p>

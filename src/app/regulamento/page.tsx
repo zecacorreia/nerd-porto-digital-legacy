@@ -47,7 +47,7 @@ export default function RegulamentoPage() {
           <div className="mx-auto max-w-[1200px] px-5 md:px-10 print:max-w-none print:px-0">
             {/* Assinatura em versão escura, só no papel */}
             <Logo tone="dark" className="mb-8 hidden h-7 print:block" />
-            <nav aria-label="Trilha" className="text-xs uppercase tracking-[0.2em] text-paper/50 print:hidden">
+            <nav aria-label="Trilha" className="text-xs uppercase tracking-[0.12em] text-paper/50 print:hidden">
               <Link href="/membro" className="transition-colors hover:text-paper">
                 Seja membro
               </Link>
@@ -57,7 +57,7 @@ export default function RegulamentoPage() {
               <span className="text-paper/80">Regulamento</span>
             </nav>
             <p className="mt-8 text-sm text-brand-light print:mt-0 print:text-ink/60">{regulamentoMeta.issuer}</p>
-            <h1 className="mt-3 max-w-[18ch] font-display text-[clamp(2.25rem,5vw,4.25rem)] font-semibold leading-[1] tracking-[-0.035em] print:text-[26pt]">
+            <h1 className="mt-3 max-w-[18ch] font-display text-[clamp(2.25rem,5vw,4.25rem)] font-semibold leading-[1] tracking-[-0.02em] print:text-[26pt]">
               {regulamentoMeta.title}
             </h1>
             <p className="mt-4 text-lg text-paper/70 print:text-ink/70">{regulamentoMeta.subtitle}</p>
@@ -77,7 +77,7 @@ export default function RegulamentoPage() {
           {/* Sumário */}
           <nav aria-label="Sumário" className="lg:col-span-4 print:hidden">
             <div className="lg:sticky lg:top-28">
-              <p className="text-xs uppercase tracking-[0.2em] text-ink/50">Sumário</p>
+              <p className="text-xs uppercase tracking-[0.12em] text-ink/50">Sumário</p>
               <ol className="mt-5 flex flex-col gap-5 text-sm">
                 {regulamentoChapters.map((chapter) => (
                   <li key={chapter.id}>
@@ -105,7 +105,7 @@ export default function RegulamentoPage() {
               <section key={chapter.id} id={chapter.id} aria-labelledby={`${chapter.id}-title`} className="scroll-mt-28">
                 {/* Rótulo + título juntos: nenhum dos dois fica sozinho no pé da página */}
                 <div className="keep-with-next">
-                  <p className="text-xs uppercase tracking-[0.2em] text-brand">Capítulo {chapter.numeral}</p>
+                  <p className="text-xs uppercase tracking-[0.12em] text-brand">Capítulo {chapter.numeral}</p>
                   <h2
                     id={`${chapter.id}-title`}
                     className="mt-2 font-display text-[clamp(1.6rem,3vw,2.25rem)] font-semibold leading-tight tracking-[-0.02em] text-ink print:text-[16pt]"

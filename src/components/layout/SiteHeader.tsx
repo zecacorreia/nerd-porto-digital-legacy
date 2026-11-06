@@ -66,7 +66,7 @@ export function SiteHeader({ links }: SiteHeaderProps) {
           href={whatsappLink()}
           target="_blank"
           rel="noopener noreferrer"
-          className="group inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-paper transition-colors hover:bg-paper hover:text-ink md:px-5"
+          className="group inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-paper transition-colors hover:bg-paper hover:text-ink md:px-5"
         >
           <span className="hidden sm:inline">Falar com especialista</span>
           <span className="sm:hidden">Especialista</span>

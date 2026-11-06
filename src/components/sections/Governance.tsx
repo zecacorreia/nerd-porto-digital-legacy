@@ -42,7 +42,7 @@ function BoardPanel({ members }: { members: readonly BoardMember[] }) {
             key={member.id}
             variants={fadeUp}
             custom={16}
-            className="flex items-center gap-4 rounded-2xl border border-ink/10 bg-paper-dim/50 p-4"
+            className="flex items-center gap-4 rounded-large border border-ink/10 bg-paper-dim/50 p-4"
           >
             <span
               aria-hidden
@@ -115,7 +115,7 @@ export function Governance() {
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <header className="grid gap-8 md:grid-cols-12 md:items-end">
           <FadeIn className="md:col-span-3">
-            <span className="text-xs uppercase tracking-[0.25em] text-ink/50">(05) — Especialistas e governança</span>
+            <span className="text-xs uppercase tracking-[0.12em] text-ink/50">(05) — Especialistas e governança</span>
           </FadeIn>
           <div className="md:col-span-9">
             <SplitText
@@ -124,7 +124,7 @@ export function Governance() {
               text="Quem pensa o futuro do NERD."
               highlight={["NERD."]}
               highlightClassName="text-brand"
-              className="font-display text-mega font-semibold leading-[0.92] tracking-[-0.04em]"
+              className="font-display text-mega font-semibold leading-[0.92] tracking-[-0.02em]"
             />
           </div>
         </header>
@@ -135,7 +135,7 @@ export function Governance() {
         <Marquee baseVelocity={6} className="py-2">
           {advisoryBoard.map((member) => (
             <Fragment key={member.id}>
-              <span className="px-6 font-display text-[clamp(3.5rem,9vw,9rem)] font-semibold leading-none tracking-[-0.045em] transition-colors duration-300 hover:text-brand md:px-10">
+              <span className="px-6 font-display text-[clamp(3.5rem,9vw,9rem)] font-semibold leading-none tracking-[-0.02em] transition-colors duration-300 hover:text-brand md:px-10">
                 {member.name}
               </span>
               <span className="h-4 w-4 shrink-0 rotate-45 bg-brand md:h-6 md:w-6" />
@@ -146,7 +146,7 @@ export function Governance() {
         <Marquee baseVelocity={-5} className="py-2">
           {allCommittees.map((committee) => (
             <Fragment key={committee}>
-              <span className="hollow px-5 font-display text-[clamp(2rem,4.5vw,4.5rem)] font-bold uppercase leading-none tracking-[-0.03em] text-ink/40 md:px-8">
+              <span className="hollow px-5 font-display text-[clamp(2rem,4.5vw,4.5rem)] font-bold uppercase leading-none tracking-[-0.02em] text-ink/40 md:px-8">
                 {committee}
               </span>
               <span className="h-2 w-2 shrink-0 rounded-full bg-brand" />

@@ -117,14 +117,14 @@ function ContactFormInner({ onReset }: ContactFormInnerProps) {
           >
             <Check className="h-8 w-8" aria-hidden />
           </m.span>
-          <p className="mt-8 font-display text-4xl font-semibold leading-tight tracking-[-0.03em] md:text-5xl">
+          <p className="mt-8 font-display text-4xl font-semibold leading-tight tracking-[-0.02em] md:text-5xl">
             Mensagem enviada.
           </p>
           <p className="mt-3 max-w-sm text-paper/60">Obrigado! A equipe do NERD vai entrar em contato em breve.</p>
           <button
             type="button"
             onClick={onReset}
-            className="mt-8 text-sm uppercase tracking-[0.2em] text-paper/60 underline-offset-4 transition-colors hover:text-brand-light hover:underline"
+            className="mt-8 text-sm uppercase tracking-[0.12em] text-paper/60 underline-offset-4 transition-colors hover:text-brand-light hover:underline"
           >
             Enviar outra mensagem
           </button>

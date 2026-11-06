@@ -32,13 +32,13 @@ function RouteMap({ play }: { play: boolean }) {
           >
             <a
               href={`#${route.id}`}
-              className="group relative flex items-center gap-5 rounded-3xl border border-paper/10 bg-ink-soft/80 p-4 pr-6 transition-colors duration-500 hover:border-brand hover:bg-brand/10 md:p-5"
+              className="group relative flex items-center gap-5 rounded-large border border-paper/10 bg-ink-soft/80 p-4 pr-6 transition-colors duration-500 hover:border-brand hover:bg-brand/10 md:p-5"
             >
               <span className="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand font-display text-sm font-semibold tabular-nums text-paper">
                 {String(index + 1).padStart(2, "0")}
               </span>
               <span className="flex-1">
-                <span className="block text-[11px] uppercase tracking-[0.25em] text-brand-light">{route.axis}</span>
+                <span className="block text-[11px] uppercase tracking-[0.12em] text-brand-light">{route.axis}</span>
                 <span className="mt-1 block font-display text-xl font-semibold leading-tight tracking-tight md:text-2xl">
                   {route.title}
                 </span>
@@ -73,7 +73,7 @@ export function StartupHero() {
 
       <div className="mx-auto grid min-h-[100svh] max-w-[1600px] items-center gap-12 px-5 pb-16 pt-32 md:px-10 lg:grid-cols-12 lg:pt-36">
         <div className="lg:col-span-7">
-          <m.span className="block text-xs uppercase tracking-[0.25em] text-brand-light" {...enter(0.1)}>
+          <m.span className="block text-xs uppercase tracking-[0.12em] text-brand-light" {...enter(0.1)}>
             {startupHero.eyebrow}
           </m.span>
           <SplitText
@@ -83,7 +83,7 @@ export function StartupHero() {
             play={isReady}
             delay={0.2}
             stagger={0.03}
-            className="mt-6 font-display text-[clamp(3.5rem,10vw,10rem)] font-semibold leading-[0.88] tracking-[-0.05em]"
+            className="mt-6 font-display text-[clamp(3.5rem,10vw,10rem)] font-semibold leading-[0.88] tracking-[-0.02em]"
           />
           <m.p className="mt-8 max-w-xl text-base text-paper/70 md:text-lg" {...enter(0.7)}>
             {startupHero.intro}

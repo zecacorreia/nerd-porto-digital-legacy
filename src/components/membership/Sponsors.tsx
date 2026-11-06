@@ -17,7 +17,7 @@ export function Sponsors() {
       <div className="mx-auto grid max-w-[1600px] gap-12 px-5 md:px-10 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-6">
           <FadeIn>
-            <span className="text-xs uppercase tracking-[0.25em] text-paper/70">(04) — Sponsor</span>
+            <span className="text-xs uppercase tracking-[0.12em] text-paper/70">(04) — Sponsor</span>
           </FadeIn>
           <SplitText
             as="h2"
@@ -25,7 +25,7 @@ export function Sponsors() {
             text="Quer apoiar o ecossistema em maior escala?"
             highlight={["maior", "escala?"]}
             highlightClassName="text-ink"
-            className="mt-6 max-w-[14ch] font-display text-[clamp(2.5rem,5.5vw,5.5rem)] font-semibold leading-[0.92] tracking-[-0.04em]"
+            className="mt-6 max-w-[14ch] font-display text-[clamp(2.5rem,5.5vw,5.5rem)] font-semibold leading-[0.92] tracking-[-0.02em]"
           />
           <FadeIn delay={0.2}>
             <p className="mt-8 max-w-md text-paper/80">
@@ -61,7 +61,7 @@ export function Sponsors() {
               <span className="font-display text-sm tabular-nums text-paper/60">
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <span className="mr-auto font-display text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-none tracking-[-0.04em] transition-transform duration-500 ease-out-expo group-hover:translate-x-3">
+              <span className="mr-auto font-display text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-none tracking-[-0.02em] transition-transform duration-500 ease-out-expo group-hover:translate-x-3">
                 {tier}
               </span>
             </m.li>

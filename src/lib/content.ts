@@ -258,25 +258,25 @@ export const spaces: readonly SpaceItem[] = [
     id: "coworking",
     name: "Coworking",
     description: "Estações abertas para trabalhar lado a lado com quem está construindo o ecossistema.",
-    scene: { from: "#081a52", to: "#1450ef", accent: "#f2f1ec" },
+    scene: { from: "#081a52", to: "#1450ef", accent: "#f7fcfb" },
   },
   {
     id: "cafe",
     name: "Café bistrô",
     description: "O ponto de encontro do prédio: café, conversa e as melhores conexões acontecem aqui.",
-    scene: { from: "#3a1408", to: "#ff4b2b", accent: "#f2f1ec" },
+    scene: { from: "#3a1408", to: "#ff4b2b", accent: "#f7fcfb" },
   },
   {
     id: "reunioes",
     name: "Salas de reunião",
     description: "Ambientes reserváveis para reuniões, entrevistas e sessões de mentoria.",
-    scene: { from: "#062a26", to: "#22e1c9", accent: "#07080a" },
+    scene: { from: "#062a26", to: "#22e1c9", accent: "#191919" },
   },
   {
     id: "eventos",
     name: "Espaço para eventos",
     description: "Palco para meetups, demo days e encontros da comunidade.",
-    scene: { from: "#0d1530", to: "#6b95ff", accent: "#f2f1ec" },
+    scene: { from: "#0d1530", to: "#01a3f8", accent: "#f7fcfb" },
   },
 ];
 

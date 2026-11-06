@@ -2,31 +2,196 @@
 
 /*
  * Design tokens — Porto Digital / NERD
- * Base de alto contraste (ink/paper) com acentos elétricos.
- * Ajuste os hex abaixo ao manual de marca oficial quando disponível.
+ * Os nomes antigos (ink, paper, brand…) continuam existindo para não mexer nos componentes,
+ * mas agora apontam para as cores do RIZOMA DS (Figma "NERD_Diretrizes de Marca").
  */
 @theme {
-  --color-ink: #07080a;
-  --color-ink-soft: #101217;
-  --color-ink-line: #23262e;
-  --color-paper: #f2f1ec;
-  --color-paper-dim: #dcdad2;
-  /* Azul da marca Porto Digital — acento principal */
+  --color-ink: #191919; /* neutral/eclipse */
+  --color-ink-soft: #282b2a; /* neutral/cibernetico */
+  --color-ink-line: #3f4443; /* neutral/bit */
+  --color-paper: #f7fcfb; /* neutral/brisa */
+  --color-paper-dim: #dae5e4; /* neutral/nuvem */
+  /* Azul da marca Porto Digital — brand/porto-azul */
   --color-brand: #1450ef;
-  /* Variação clara para texto pequeno/ícones sobre fundo escuro (contraste AA) */
-  --color-brand-light: #6b95ff;
-  --color-brand-deep: #0b2f9e;
-  --color-signal: #ff4b2b;
-  --color-aqua: #22e1c9;
+  /* Variação clara para texto pequeno/ícones sobre fundo escuro (support/celeste) */
+  --color-brand-light: #01a3f8;
+  --color-brand-deep: #0e004b; /* brand/marinho */
+  --color-signal: #f46403; /* audience/b2c-tangerina */
+  --color-aqua: #00f0ff; /* support/conexoes */
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-grotesk), var(--font-inter), ui-sans-serif, sans-serif;
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-jakarta), var(--font-montserrat), ui-sans-serif, sans-serif;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
 
   --text-giant: clamp(5rem, 24vw, 26rem);
   --text-mega: clamp(2.75rem, 7.5vw, 8.5rem);
+}
+
+/* ================================================================== */
+/* RIZOMA DS — Design System NERD (Figma "NERD_Diretrizes de Marca")   */
+/* Fonte: páginas "Revisar - Design System" e "LP / 1. Versão atual".   */
+/* Nomes espelham as variáveis do Figma (brand/, audience/, support/,  */
+/* neutral/ e semânticos text/, border/, surface/).                     */
+/* ================================================================== */
+@theme {
+  /* brand/ */
+  --color-porto-azul: #1450ef;
+  --color-marinho: #0e004b;
+
+  /* audience/ */
+  --color-oceanico: #00ff9d; /* b2b-oceanico */
+  --color-tangerina: #f46403; /* b2c-tangerina */
+  --color-aurora: #dd0a5b; /* b2c-aurora */
+
+  /* support/ */
+  --color-lilas-boreal: #270099;
+  --color-purpura-digital: #3f00e5;
+  --color-arroxado: #550ec4;
+  --color-celeste: #01a3f8;
+  --color-conexoes: #00f0ff;
+  --color-coqueiral: #84db09;
+  --color-manteiga: #ffaa00; /* manteiga-de-garrafa */
+
+  /* neutral/ */
+  --color-branco: #ffffff;
+  --color-brisa: #f7fcfb;
+  --color-nuvem: #dae5e4;
+  --color-circuito: #9da5a4;
+  --color-bit: #3f4443;
+  --color-cibernetico: #282b2a;
+  --color-eclipse: #191919;
+
+  /* Semânticos (aliases das primitivas, como no Figma) */
+  --color-heading: var(--color-marinho); /* text/heading */
+  --color-line: var(--color-marinho); /* border/solid */
+  --color-surface-secondary: var(--color-brisa); /* surface/secondary */
+
+  /* Tipografia (famílias carregadas via next/font em app/layout.tsx) */
+  --font-heading: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+
+  /* Geometria — radius/ */
+  --radius-small: 4px;
+  --radius-medium: 8px;
+  --radius-large: 16px;
+  --radius-pill: 999px;
+
+  /* Elevation/ (sombras suaves) e Depth/ (sombra "tátil 3D" dos botões) */
+  --shadow-low: 0 2px 4px 0 rgb(14 0 75 / 0.08);
+  --shadow-medium: 0 8px 16px 0 rgb(14 0 75 / 0.12);
+  --shadow-high: 0 16px 32px 0 rgb(14 0 75 / 0.16);
+  --shadow-depth: 0 4px 0 0 rgb(14 0 75 / 0.2);
+  --shadow-depth-pressed: 0 2px 0 0 rgb(14 0 75 / 0.2);
+
+  /* Curva "Ease out" dos protótipos do Figma */
+  --ease-figma-out: cubic-bezier(0, 0, 0.58, 1);
+
+  /*
+   * Espaçamento: a escala padrão do Tailwind (0.25rem) já cobre os tokens
+   * spacing/4·8·12·16·24·32·48 → p-1·2·3·4·6·8·12. Medidas de layout do Figma:
+   */
+  --spacing-header: 52px; /* header mobile: 12 + 28 + 12 */
+  --spacing-header-lg: 88px; /* header desktop */
+  --spacing-gutter-lg: 120px; /* padding lateral do frame 1440 */
+}
+
+/*
+ * Estilos de texto do Figma (Typography Scale). Cada utilitário aplica família,
+ * peso, tamanho, entrelinha e tracking juntos — e aceita variantes (lg:type-…).
+ */
+@utility type-display-lg {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 6rem;
+  line-height: 7rem;
+  letter-spacing: -0.02em;
+}
+@utility type-display-md {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 4rem;
+  line-height: 4.5rem;
+  letter-spacing: -0.02em;
+}
+@utility type-heading-xl {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 3.5rem;
+}
+@utility type-heading-lg {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 3rem;
+}
+@utility type-heading-md {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 2.5rem;
+}
+@utility type-heading-sm {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+@utility type-heading-xs {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+@utility type-label-lg {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+}
+@utility type-label-md {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.25rem;
+}
+@utility type-label-sm {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1rem;
+}
+@utility type-label-xs {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+@utility type-paragraph-lg {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+@utility type-paragraph-md {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+@utility type-paragraph-sm {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+@utility type-paragraph-xs {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
 }
 
 @layer base {

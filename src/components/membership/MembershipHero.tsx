@@ -29,7 +29,7 @@ export function MembershipHero() {
 
       <div className="mx-auto grid min-h-[100svh] max-w-[1600px] items-center gap-12 px-5 pb-16 pt-32 md:px-10 lg:grid-cols-12 lg:pt-36">
         <div className="lg:col-span-7">
-          <m.span className="block text-xs uppercase tracking-[0.25em] text-brand-light" {...enter(0.1)}>
+          <m.span className="block text-xs uppercase tracking-[0.12em] text-brand-light" {...enter(0.1)}>
             {membershipHero.eyebrow}
           </m.span>
           <SplitText
@@ -39,7 +39,7 @@ export function MembershipHero() {
             play={isReady}
             delay={0.2}
             stagger={0.016}
-            className="mt-6 max-w-[15ch] font-display text-[clamp(2.75rem,6vw,6.5rem)] font-semibold leading-[0.95] tracking-[-0.04em]"
+            className="mt-6 max-w-[15ch] font-display text-[clamp(2.75rem,6vw,6.5rem)] font-semibold leading-[0.95] tracking-[-0.02em]"
           />
           <m.p className="mt-8 max-w-xl text-base text-paper/70 md:text-lg" {...enter(0.8)}>
             {membershipHero.intro}

@@ -41,7 +41,7 @@ function StepCard({ step, index, active, onActivate }: StepCardProps) {
       >
         <span className="font-display text-sm tabular-nums text-brand">{String(index + 1).padStart(2, "0")}</span>
         <div>
-          <h3 className="font-display text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-none tracking-[-0.03em]">
+          <h3 className="font-display text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-none tracking-[-0.02em]">
             {step.title}
           </h3>
           <p className="mt-5 max-w-md text-base text-ink/60 md:text-lg">{step.description}</p>
@@ -62,14 +62,14 @@ export function HowItWorks() {
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-32">
             <FadeIn>
-              <span className="text-xs uppercase tracking-[0.25em] text-ink/50">(01) — Como funciona</span>
+              <span className="text-xs uppercase tracking-[0.12em] text-ink/50">(01) — Como funciona</span>
             </FadeIn>
             <SplitText
               as="h2"
               trigger="inView"
               text="Quatro passos para entrar na rede."
               highlight={["rede."]}
-              className="mt-6 max-w-[12ch] font-display text-mega font-semibold leading-[0.92] tracking-[-0.04em]"
+              className="mt-6 max-w-[12ch] font-display text-mega font-semibold leading-[0.92] tracking-[-0.02em]"
             />
 
             {/* Número gigante do passo ativo (desktop) */}
@@ -77,7 +77,7 @@ export function HowItWorks() {
               <AnimatePresence mode="popLayout" initial={false}>
                 <m.span
                   key={activeIndex}
-                  className="absolute left-0 top-0 font-display text-[clamp(8rem,14vw,13rem)] font-bold leading-none tracking-[-0.06em] text-brand"
+                  className="absolute left-0 top-0 font-display text-[clamp(8rem,14vw,13rem)] font-bold leading-none tracking-[-0.02em] text-brand"
                   initial={{ y: "100%" }}
                   animate={{ y: "0%" }}
                   exit={{ y: "-100%" }}

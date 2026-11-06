@@ -54,7 +54,7 @@ export function RegBlocks({ blocks }: { blocks: readonly RegBlock[] }) {
 
           case "table":
             return (
-              <div key={key} className="overflow-x-auto rounded-2xl border border-ink/10 print:overflow-visible print:rounded-none print:border-ink/30">
+              <div key={key} className="overflow-x-auto rounded-large border border-ink/10 print:overflow-visible print:rounded-none print:border-ink/30">
                 <table className="w-full min-w-[28rem] border-collapse text-left text-sm print:min-w-0 print:text-[9.5pt]">
                   <thead className="bg-ink text-paper print:border-b-2 print:border-ink print:bg-transparent print:text-ink">
                     <tr>

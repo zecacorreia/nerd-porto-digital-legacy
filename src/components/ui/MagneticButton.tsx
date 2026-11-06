@@ -25,18 +25,25 @@ interface MagneticButtonProps {
   ariaLabel?: string;
 }
 
+/*
+ * Botões do RIZOMA DS ("Button – Semente Híbrida"): borda de 2px, raio medium, sombra tátil
+ * "Depth" e rótulo em Montserrat Medium (sem caixa-alta). Mantém o preenchimento que sobe no hover.
+ *  - primary: Highlight (support/coqueiral) — CTA principal sobre fundos escuros.
+ *  - ghost: Negative — contorno e texto brancos.
+ *  - dark: Primary (brand/porto-azul) com preenchimento marinho.
+ */
 const variantStyles: Record<MagneticVariant, { base: string; fill: string }> = {
   primary: {
-    base: "bg-brand text-paper hover:text-ink",
-    fill: "bg-paper",
+    base: "border-marinho bg-coqueiral text-marinho hover:text-marinho",
+    fill: "bg-branco",
   },
   ghost: {
-    base: "border border-paper/30 text-paper hover:text-ink",
-    fill: "bg-paper",
+    base: "border-branco bg-transparent text-branco hover:text-marinho",
+    fill: "bg-branco",
   },
   dark: {
-    base: "bg-ink text-paper hover:text-paper",
-    fill: "bg-brand",
+    base: "border-marinho bg-porto-azul text-branco hover:text-branco",
+    fill: "bg-marinho",
   },
 };
 
@@ -94,7 +101,7 @@ export function MagneticButton({
     onPointerLeave: reset,
     style: { x: springX, y: springY },
     className: cn(
-      "group relative inline-flex items-center justify-center overflow-hidden rounded-full px-7 py-4 text-sm font-medium uppercase tracking-[0.14em] transition-colors duration-500 ease-out-expo disabled:pointer-events-none disabled:opacity-60 md:px-9 md:py-5",
+      "group relative inline-flex items-center justify-center overflow-hidden rounded-medium border-2 px-[22px] py-[14px] type-label-md shadow-depth transition-colors duration-500 ease-out-expo disabled:pointer-events-none disabled:opacity-60 md:px-7 md:py-4",
       styles.base,
       className,
     ),

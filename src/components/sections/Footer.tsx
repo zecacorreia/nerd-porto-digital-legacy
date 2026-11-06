@@ -61,14 +61,14 @@ export function Footer() {
         {/* Chamada + informações */}
         <div className="flex flex-col md:col-span-5">
           <FadeIn>
-            <span className="text-xs uppercase tracking-[0.25em] text-paper/50">(06) — Contato</span>
+            <span className="text-xs uppercase tracking-[0.12em] text-paper/50">(06) — Contato</span>
           </FadeIn>
           <SplitText
             as="h2"
             trigger="inView"
             text="Vamos construir o próximo capítulo juntos?"
             highlight={["juntos?"]}
-            className="mt-6 font-display text-[clamp(2.5rem,5vw,5rem)] font-semibold leading-[0.95] tracking-[-0.04em]"
+            className="mt-6 font-display text-[clamp(2.5rem,5vw,5rem)] font-semibold leading-[0.95] tracking-[-0.02em]"
           />
           <FadeIn delay={0.2}>
             <p className="mt-8 max-w-sm text-paper/60">
@@ -139,7 +139,7 @@ export function Footer() {
       <GiantCta />
 
       {/* Barra final */}
-      <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4 border-t border-paper/15 px-5 py-6 text-xs uppercase tracking-[0.2em] text-paper/40 md:px-10">
+      <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4 border-t border-paper/15 px-5 py-6 text-xs uppercase tracking-[0.12em] text-paper/40 md:px-10">
         <span>© {new Date().getFullYear()} NERD · Porto Digital</span>
         <button
           type="button"
