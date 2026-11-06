@@ -8,3 +8,6 @@ next-env.d.ts
 
 # Configuração local do Claude Code
 .claude/
+
+# Gerado pelo Next
+AGENTS.md
