@@ -2,8 +2,14 @@
 
 import { m, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import { useRef } from "react";
 
+import predio from "@/assets/figma/hero/predio-nerd.png";
+import { Caranguejo } from "@/components/decor/Decor";
+import { Waves } from "@/components/decor/Waves";
+
+import { Parallax } from "@/components/motion/Parallax";
 import { SplitText } from "@/components/motion/SplitText";
 import { useIntro } from "@/components/providers/IntroProvider";
 import { Logo } from "@/components/ui/Logo";
@@ -17,7 +23,10 @@ export function Hero() {
   const { isReady } = useIntro();
 
   // 0 → hero no topo; 1 → hero saiu completamente da tela.
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
 
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
@@ -37,7 +46,10 @@ export function Hero() {
       id="topo"
       className="relative isolate h-[100svh] min-h-[640px] overflow-hidden bg-ink text-paper"
     >
-      <m.div className="absolute inset-0 -z-10" style={{ scale: backgroundScale }}>
+      <m.div
+        className="absolute inset-0 -z-10"
+        style={{ scale: backgroundScale }}
+      >
         <MeshGradient />
       </m.div>
 
@@ -57,6 +69,48 @@ export function Hero() {
         </m.span>
       </m.div>
 
+      {/* Ondas atrás do prédio: o prédio as cobre a partir da sua borda esquerda, como no Figma */}
+      <m.div
+        aria-hidden
+        className="pointer-events-none absolute bottom-0 left-[30%] -z-[5] w-[110%] text-aqua md:left-[28%] md:w-[52%]"
+        initial={{ opacity: 0 }}
+        animate={isReady ? { opacity: 1 } : undefined}
+        transition={{ duration: 0.6, delay: 0.6 }}
+      >
+        <Waves play={isReady} delay={0.8} />
+      </m.div>
+
+      {/* Foto do prédio do NERD (fundo removido): sobe com o scroll em parallax */}
+      <m.div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 top-[10%] -z-[4] md:inset-x-auto md:right-[1.5%] md:top-[6%] md:w-[50%]"
+        initial={{ opacity: 0, y: 60 }}
+        animate={isReady ? { opacity: 1, y: 0 } : undefined}
+        transition={{ ...transitions.reveal, delay: 0.3 }}
+      >
+        <Parallax offset={24} className="absolute inset-x-0 -bottom-6 -top-6">
+          <Image
+            src={predio}
+            alt=""
+            fill
+            priority
+            sizes="(min-width: 768px) 48vw, 100vw"
+            className="object-contain object-bottom"
+          />
+        </Parallax>
+      </m.div>
+
+      {/* Caranguejo sobre as ondas */}
+      <m.div
+        aria-hidden
+        className="pointer-events-none absolute bottom-3 right-[8%] z-[5] w-[110px] md:bottom-4 md:right-[55%] md:w-[150px]"
+        initial={{ opacity: 0, y: 16 }}
+        animate={isReady ? { opacity: 1, y: 0 } : undefined}
+        transition={{ duration: 0.6, delay: 1.2 }}
+      >
+        <Caranguejo />
+      </m.div>
+
       {/* Barra superior */}
       <m.div
         className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-5 py-5 md:px-10 md:py-8"
@@ -65,7 +119,9 @@ export function Hero() {
         <a href="#topo" aria-label="Porto Digital NERD — início">
           <Logo priority className="h-6 md:h-8" />
         </a>
-        <span className="text-[11px] uppercase tracking-[0.12em] text-paper/60">{heroContent.eyebrow}</span>
+        <span className="text-[11px] uppercase tracking-[0.12em] text-paper/60">
+          {heroContent.eyebrow}
+        </span>
       </m.div>
 
       <m.div
@@ -75,15 +131,18 @@ export function Hero() {
         <SplitText
           as="h1"
           text={heroContent.title}
-          highlight={["NERD,"]}
+          highlight={["conectado"]}
           play={isReady}
           delay={0.25}
           stagger={0.018}
-          className="max-w-[17ch] font-display text-[clamp(2.5rem,6.2vw,7rem)] font-semibold leading-[0.95] tracking-[-0.02em]"
+          className="max-w-[14ch] font-display text-[clamp(2.5rem,5.6vw,6.5rem)] font-semibold leading-[0.95] tracking-[-0.02em]"
         />
 
-        <div className="mt-8 flex flex-col gap-8 md:mt-12 md:flex-row md:items-end md:justify-between">
-          <m.p className="max-w-md text-base text-paper/70 md:text-lg" {...enter(0.9)}>
+        <div className="mt-8 flex flex-col gap-8 md:mt-10 md:max-w-[46%]">
+          <m.p
+            className="max-w-md text-base text-paper/70 md:text-lg"
+            {...enter(0.9)}
+          >
             {heroContent.subtitle}
           </m.p>
 
@@ -111,7 +170,9 @@ export function Hero() {
         animate={isReady ? { opacity: 1 } : undefined}
         transition={{ delay: 1.4, duration: 1 }}
       >
-        <span className="text-[10px] uppercase tracking-[0.3em] [writing-mode:vertical-rl]">Role</span>
+        <span className="text-[10px] uppercase tracking-[0.3em] [writing-mode:vertical-rl]">
+          Role
+        </span>
         <m.span
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}

@@ -3,6 +3,7 @@
 import { m, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
+import { MarcoZero } from "@/components/decor/Decor";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { Parallax } from "@/components/motion/Parallax";
 import { SplitText } from "@/components/motion/SplitText";
@@ -31,15 +32,60 @@ interface FloatingShape {
 }
 
 const SHAPES: readonly FloatingShape[] = [
-  { id: "s1", kind: "ring", position: "left-[6%] top-[12%]", className: "h-24 w-24 border-brand md:h-40 md:w-40", offset: 140, float: 7 },
-  { id: "s2", kind: "dot", position: "right-[12%] top-[8%]", className: "h-5 w-5 bg-signal", offset: -90, float: 5 },
-  { id: "s3", kind: "plus", position: "right-[6%] top-[42%]", className: "text-brand", offset: 200, float: 6 },
-  { id: "s4", kind: "square", position: "left-[42%] top-[30%] hidden md:block", className: "h-10 w-10 border-ink/30", offset: -160, float: 8 },
-  { id: "s5", kind: "dot", position: "bottom-[18%] left-[18%]", className: "h-3 w-3 bg-brand", offset: 120, float: 4.5 },
-  { id: "s6", kind: "ring", position: "bottom-[10%] right-[24%] hidden md:block", className: "h-16 w-16 border-signal/70", offset: -120, float: 6.5 },
+  {
+    id: "s1",
+    kind: "ring",
+    position: "left-[6%] top-[12%]",
+    className: "h-24 w-24 border-brand md:h-40 md:w-40",
+    offset: 140,
+    float: 7,
+  },
+  {
+    id: "s2",
+    kind: "dot",
+    position: "right-[12%] top-[8%]",
+    className: "h-5 w-5 bg-signal",
+    offset: -90,
+    float: 5,
+  },
+  {
+    id: "s3",
+    kind: "plus",
+    position: "right-[6%] top-[42%]",
+    className: "text-brand",
+    offset: 200,
+    float: 6,
+  },
+  {
+    id: "s4",
+    kind: "square",
+    position: "left-[42%] top-[30%] hidden md:block",
+    className: "h-10 w-10 border-ink/30",
+    offset: -160,
+    float: 8,
+  },
+  {
+    id: "s5",
+    kind: "dot",
+    position: "bottom-[18%] left-[18%]",
+    className: "h-3 w-3 bg-brand",
+    offset: 120,
+    float: 4.5,
+  },
+  {
+    id: "s6",
+    kind: "ring",
+    position: "bottom-[10%] right-[24%] hidden md:block",
+    className: "h-16 w-16 border-signal/70",
+    offset: -120,
+    float: 6.5,
+  },
 ];
 
-function ShapeGlyph({ kind, className }: Pick<FloatingShape, "kind" | "className">) {
+function ShapeGlyph({
+  kind,
+  className,
+}: Pick<FloatingShape, "kind" | "className">) {
   switch (kind) {
     case "ring":
       return <span className={cn("block rounded-full border-2", className)} />;
@@ -48,7 +94,16 @@ function ShapeGlyph({ kind, className }: Pick<FloatingShape, "kind" | "className
     case "square":
       return <span className={cn("block rotate-12 border-2", className)} />;
     case "plus":
-      return <span className={cn("block font-display text-6xl font-light leading-none", className)}>+</span>;
+      return (
+        <span
+          className={cn(
+            "block font-display text-6xl font-light leading-none",
+            className,
+          )}
+        >
+          +
+        </span>
+      );
   }
 }
 
@@ -58,18 +113,28 @@ function FloatingShapes() {
   const playing = useInView(ref);
 
   return (
-    <div ref={ref} aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+    <div
+      ref={ref}
+      aria-hidden
+      className="pointer-events-none absolute inset-0 -z-10"
+    >
       {SHAPES.map((shape) => (
-          <div key={shape.id} className={cn("absolute", shape.position)}>
-            <Parallax offset={shape.offset}>
-              <m.div
-                animate={playing ? { y: [0, -16, 0], rotate: [0, 8, 0] } : undefined}
-                transition={{ duration: shape.float, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <ShapeGlyph kind={shape.kind} className={shape.className} />
-              </m.div>
-            </Parallax>
-          </div>
+        <div key={shape.id} className={cn("absolute", shape.position)}>
+          <Parallax offset={shape.offset}>
+            <m.div
+              animate={
+                playing ? { y: [0, -16, 0], rotate: [0, 8, 0] } : undefined
+              }
+              transition={{
+                duration: shape.float,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <ShapeGlyph kind={shape.kind} className={shape.className} />
+            </m.div>
+          </Parallax>
+        </div>
       ))}
     </div>
   );
@@ -88,7 +153,10 @@ interface StatItemProps {
 function StatItem({ stat, index, featured }: StatItemProps) {
   return (
     <m.li
-      className={cn("relative pt-6", featured ? "md:col-span-3" : "md:col-span-2")}
+      className={cn(
+        "relative pt-6",
+        featured ? "md:col-span-3" : "md:col-span-2",
+      )}
       initial="hidden"
       whileInView="visible"
       viewport={viewportOnce}
@@ -107,16 +175,24 @@ function StatItem({ stat, index, featured }: StatItemProps) {
       <p
         className={cn(
           "mt-6 flex items-baseline font-display font-semibold leading-[0.85] tracking-[-0.02em]",
-          featured ? "text-[clamp(5rem,14vw,13rem)]" : "text-[clamp(4rem,10vw,9rem)]",
+          featured
+            ? "text-[clamp(5rem,14vw,13rem)]"
+            : "text-[clamp(4rem,10vw,9rem)]",
         )}
       >
         {stat.prefix && <span className="text-[0.4em]">{stat.prefix}</span>}
         <AnimatedCounter value={stat.value} delay={index * 0.1} />
-        {stat.suffix && <span className="ml-2 text-[0.35em] tracking-tight text-brand">{stat.suffix}</span>}
+        {stat.suffix && (
+          <span className="ml-2 text-[0.35em] tracking-tight text-brand">
+            {stat.suffix}
+          </span>
+        )}
       </p>
 
       <FadeIn delay={0.2 + index * 0.08} distance={20}>
-        <p className="mt-6 max-w-xs text-sm text-ink/60 md:text-base">{stat.description}</p>
+        <p className="mt-6 max-w-xs text-sm text-ink/60 md:text-base">
+          {stat.description}
+        </p>
       </FadeIn>
     </m.li>
   );
@@ -128,7 +204,10 @@ function StatItem({ stat, index, featured }: StatItemProps) {
 
 export function EcosystemNumbers() {
   const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
   // Faixa tipográfica que desliza em sentidos opostos conforme o scroll.
   const marqueeA = useTransform(scrollYProgress, [0, 1], ["5%", "-35%"]);
   const marqueeB = useTransform(scrollYProgress, [0, 1], ["-35%", "5%"]);
@@ -142,10 +221,18 @@ export function EcosystemNumbers() {
     >
       <FloatingShapes />
 
+      {/* Marco Zero girando, sangrando pela direita: textura de marca atrás dos números */}
+      <MarcoZero
+        duration={45}
+        className="absolute -right-[18vw] top-[14%] -z-10 size-[clamp(16rem,42vw,40rem)] opacity-30 mix-blend-multiply md:-right-[10vw] md:opacity-40"
+      />
+
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <header className="grid gap-8 md:grid-cols-12">
           <FadeIn className="md:col-span-3">
-            <span className="text-xs uppercase tracking-[0.12em] text-ink/50">(01) — Ecossistema</span>
+            <span className="text-xs uppercase tracking-[0.12em] text-ink/50">
+              (01) — Ecossistema
+            </span>
           </FadeIn>
           <div className="md:col-span-9">
             <SplitText
@@ -161,7 +248,12 @@ export function EcosystemNumbers() {
 
         <ul className="mt-20 grid gap-x-8 gap-y-16 md:mt-32 md:grid-cols-6">
           {ecosystemStats.map((stat, index) => (
-            <StatItem key={stat.id} stat={stat} index={index} featured={index < 2} />
+            <StatItem
+              key={stat.id}
+              stat={stat}
+              index={index}
+              featured={index < 2}
+            />
           ))}
         </ul>
       </div>

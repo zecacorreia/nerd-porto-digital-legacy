@@ -41,7 +41,7 @@ export const navLinks: readonly NavLink[] = [
 
 export const heroContent: HeroContent = {
   eyebrow: "Porto Digital · Recife",
-  title: "NERD, a plataforma de negócios do Porto Digital.",
+  title: "Seu desafio, conectado a quem pode resolver.",
   subtitle: "A forma mais rápida de conectar sua empresa ao ecossistema de inovação.",
   ctas: [
     { label: "Para startups", href: "/startup", variant: "primary" },

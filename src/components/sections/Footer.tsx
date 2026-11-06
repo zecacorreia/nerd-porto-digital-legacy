@@ -5,6 +5,7 @@ import { ArrowUp, ArrowUpRight, MapPin } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";
 
+import { FaixaOndas } from "@/components/decor/Decor";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { SplitText } from "@/components/motion/SplitText";
 import { ContactForm } from "@/components/ui/ContactForm";
@@ -20,12 +21,19 @@ const CTA_TEXT = "Faça parte";
 /** CTA gigante: o preenchimento azul "pinta" o texto vazado conforme o scroll chega ao fim. */
 function GiantCta() {
   const ref = useRef<HTMLAnchorElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end end"],
+  });
 
   const remaining = useTransform(scrollYProgress, [0.15, 0.95], [100, 0]);
   const clipPath = useMotionTemplate`inset(0 ${remaining}% 0 0)`;
   const y = useTransform(scrollYProgress, [0, 1], ["35%", "0%"]);
-  const letterSpacing = useTransform(scrollYProgress, [0, 1], ["0.04em", "-0.06em"]);
+  const letterSpacing = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["0.04em", "-0.06em"],
+  );
 
   const textClass =
     "block whitespace-nowrap text-center font-display text-[clamp(3.75rem,16.5vw,18rem)] font-bold uppercase leading-[0.8]";
@@ -39,7 +47,11 @@ function GiantCta() {
       className="relative block select-none overflow-hidden pb-[2vw] pt-[6vw]"
     >
       <m.span className="relative block" style={{ y }}>
-        <m.span aria-hidden className={`hollow text-paper/25 ${textClass}`} style={{ letterSpacing }}>
+        <m.span
+          aria-hidden
+          className={`hollow text-paper/25 ${textClass}`}
+          style={{ letterSpacing }}
+        >
           {CTA_TEXT}
         </m.span>
         <m.span
@@ -61,7 +73,9 @@ export function Footer() {
         {/* Chamada + informações */}
         <div className="flex flex-col md:col-span-5">
           <FadeIn>
-            <span className="text-xs uppercase tracking-[0.12em] text-paper/50">(06) — Contato</span>
+            <span className="text-xs uppercase tracking-[0.12em] text-paper/50">
+              (06) — Contato
+            </span>
           </FadeIn>
           <SplitText
             as="h2"
@@ -72,7 +86,8 @@ export function Footer() {
           />
           <FadeIn delay={0.2}>
             <p className="mt-8 max-w-sm text-paper/60">
-              Empresa, startup ou parceiro: conte o que você procura e a equipe do NERD te conecta ao ecossistema.
+              Empresa, startup ou parceiro: conte o que você procura e a equipe
+              do NERD te conecta ao ecossistema.
             </p>
           </FadeIn>
 
@@ -86,7 +101,9 @@ export function Footer() {
               <MapPin className="mt-1 h-5 w-5 shrink-0" aria-hidden />
               <span>
                 {spaceAddress}
-                <span className="block text-paper/50 group-hover:text-brand-light/70">Recife — PE, Brasil</span>
+                <span className="block text-paper/50 group-hover:text-brand-light/70">
+                  Recife — PE, Brasil
+                </span>
               </span>
               <ArrowUpRight
                 className="mt-1 h-4 w-4 shrink-0 transition-transform duration-500 ease-out-expo group-hover:rotate-45"
@@ -107,16 +124,25 @@ export function Footer() {
       {/* Navegação */}
       <div className="mx-auto mt-24 grid max-w-[1600px] gap-10 border-t border-paper/15 px-5 pt-10 md:mt-32 md:grid-cols-12 md:px-10">
         <div className="md:col-span-5">
-          <Link href="/" aria-label="Porto Digital NERD — início" className="inline-block">
+          <Link
+            href="/"
+            aria-label="Porto Digital NERD — início"
+            className="inline-block"
+          >
             <Logo className="h-8 md:h-10" />
           </Link>
-          <p className="mt-3 max-w-xs text-sm text-paper/50">Núcleo de Empreendedorismo e Residência Digital</p>
+          <p className="mt-3 max-w-xs text-sm text-paper/50">
+            Núcleo de Empreendedorismo e Residência Digital
+          </p>
         </div>
         <nav aria-label="Rodapé" className="md:col-span-4 md:col-start-7">
           <ul className="grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="text-paper/60 transition-colors hover:text-brand-light">
+                <Link
+                  href={link.href}
+                  className="text-paper/60 transition-colors hover:text-brand-light"
+                >
                   {link.label}
                 </Link>
               </li>
@@ -135,6 +161,9 @@ export function Footer() {
           </a>
         </div>
       </div>
+
+      {/* Ondas e caranguejo antes do CTA gigante */}
+      <FaixaOndas className="mt-20 px-5 md:mt-28 md:px-10" />
 
       <GiantCta />
 
