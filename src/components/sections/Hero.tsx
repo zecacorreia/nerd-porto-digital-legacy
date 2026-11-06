@@ -56,7 +56,7 @@ export function Hero() {
       {/* Tipografia gigante decorativa que desliza com o scroll */}
       <m.div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-[14%] -z-10 select-none whitespace-nowrap md:top-[8%]"
+        className="pointer-events-none absolute inset-x-0 top-[14%] -z-10 hidden select-none whitespace-nowrap md:top-[8%] md:block"
         style={{ x: giantX, y: giantY }}
       >
         <m.span
@@ -83,7 +83,7 @@ export function Hero() {
       {/* Foto do prédio do NERD (fundo removido): sobe com o scroll em parallax */}
       <m.div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 top-[10%] -z-[4] md:inset-x-auto md:right-[1.5%] md:top-[6%] md:w-[50%]"
+        className="pointer-events-none absolute inset-x-0 bottom-0 top-[62%] -z-[4] md:inset-x-auto md:right-0 md:top-[6%] md:w-[50%]"
         initial={{ opacity: 0, y: 60 }}
         animate={isReady ? { opacity: 1, y: 0 } : undefined}
         transition={{ ...transitions.reveal, delay: 0.3 }}
@@ -103,7 +103,7 @@ export function Hero() {
       {/* Caranguejo sobre as ondas */}
       <m.div
         aria-hidden
-        className="pointer-events-none absolute bottom-3 right-[8%] z-[5] w-[110px] md:bottom-4 md:right-[55%] md:w-[150px]"
+        className="pointer-events-none absolute bottom-2 right-[6%] z-[5] w-[84px] md:bottom-4 md:right-[55%] md:w-[150px]"
         initial={{ opacity: 0, y: 16 }}
         animate={isReady ? { opacity: 1, y: 0 } : undefined}
         transition={{ duration: 0.6, delay: 1.2 }}
@@ -125,7 +125,7 @@ export function Hero() {
       </m.div>
 
       <m.div
-        className="relative z-10 mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 pb-10 md:px-10 md:pb-16"
+        className="relative z-10 mx-auto flex h-full max-w-[1600px] flex-col justify-start px-5 pb-10 pt-28 md:justify-end md:px-10 md:pb-16 md:pt-0"
         style={{ y: contentY, opacity: contentOpacity }}
       >
         <SplitText
@@ -146,12 +146,16 @@ export function Hero() {
             {heroContent.subtitle}
           </m.p>
 
-          <m.div className="flex flex-wrap gap-3" {...enter(1.05)}>
+          <m.div
+            className="grid grid-cols-2 gap-3 md:flex md:flex-wrap"
+            {...enter(1.05)}
+          >
             {heroContent.ctas.map((cta) => (
               <MagneticButton
                 key={cta.label}
                 href={cta.href}
                 variant={cta.variant}
+                className="w-full px-3 md:w-auto md:px-7"
                 icon={<ArrowUpRight className="h-4 w-4" aria-hidden />}
               >
                 {cta.label}
