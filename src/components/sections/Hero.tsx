@@ -83,7 +83,7 @@ export function Hero() {
       {/* Foto do prédio do NERD (fundo removido): sobe com o scroll em parallax */}
       <m.div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 top-[62%] -z-[4] md:inset-x-auto md:right-0 md:top-[6%] md:w-[50%]"
+        className="pointer-events-none absolute inset-x-0 bottom-0 top-[52%] -z-[4] md:inset-x-auto md:right-0 md:top-[6%] md:w-[50%]"
         initial={{ opacity: 0, y: 60 }}
         animate={isReady ? { opacity: 1, y: 0 } : undefined}
         transition={{ ...transitions.reveal, delay: 0.3 }}
@@ -95,7 +95,7 @@ export function Hero() {
             fill
             priority
             sizes="(min-width: 768px) 48vw, 100vw"
-            className="object-contain object-bottom"
+            className="object-cover object-bottom md:object-contain"
           />
         </Parallax>
       </m.div>
@@ -147,7 +147,7 @@ export function Hero() {
           </m.p>
 
           <m.div
-            className="grid grid-cols-2 gap-3 md:flex md:flex-wrap"
+            className="flex flex-col gap-3 md:flex-row md:flex-wrap"
             {...enter(1.05)}
           >
             {heroContent.ctas.map((cta) => (
@@ -155,7 +155,7 @@ export function Hero() {
                 key={cta.label}
                 href={cta.href}
                 variant={cta.variant}
-                className="w-full px-3 md:w-auto md:px-7"
+                className="w-full md:w-auto"
                 icon={<ArrowUpRight className="h-4 w-4" aria-hidden />}
               >
                 {cta.label}
