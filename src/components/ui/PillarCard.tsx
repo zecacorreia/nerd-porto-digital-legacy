@@ -1,10 +1,10 @@
 import {
+  Building2,
   GraduationCap,
   Handshake,
   Network,
   ScanSearch,
   TrendingUp,
-  Users,
   type LucideIcon,
 } from "lucide-react";
 
@@ -14,9 +14,9 @@ import { cn } from "@/lib/utils";
 
 const PILLAR_ICONS: Record<PillarIcon, LucideIcon> = {
   curadoria: ScanSearch,
-  rede: Network,
-  talentos: Users,
   formacao: GraduationCap,
+  rede: Network,
+  espaco: Building2,
   mercado: Handshake,
   capital: TrendingUp,
 };
@@ -61,7 +61,7 @@ export function PillarCard({ pillar, pathId, index, className }: PillarCardProps
   return (
     <TiltCard
       className={cn(theme.wrapper, className)}
-      innerClassName={cn("flex flex-col justify-between gap-10 p-7 md:p-9", theme.surface)}
+      innerClassName={cn("flex h-full flex-col justify-between gap-10 p-7 md:p-8", theme.surface)}
       glowColor={theme.glow}
       maxTilt={7}
     >
@@ -71,7 +71,7 @@ export function PillarCard({ pillar, pathId, index, className }: PillarCardProps
         </span>
         <span
           className={cn(
-            "flex h-14 w-14 items-center justify-center rounded-full transition-transform duration-700 ease-out-expo group-hover/tilt:rotate-[360deg]",
+            "flex h-12 w-12 items-center justify-center rounded-full transition-transform duration-700 ease-out-expo group-hover/tilt:rotate-[360deg]",
             theme.badge,
           )}
         >
@@ -80,7 +80,7 @@ export function PillarCard({ pillar, pathId, index, className }: PillarCardProps
       </div>
 
       <div>
-        <h4 className="font-display text-3xl font-semibold leading-[1] tracking-[-0.02em] md:text-4xl">
+        <h4 className="font-display text-2xl font-semibold leading-[1.05] tracking-[-0.02em] md:text-3xl">
           {pillar.title}
         </h4>
         <p className={cn("mt-4 text-sm md:text-base", theme.muted)}>{pillar.description}</p>

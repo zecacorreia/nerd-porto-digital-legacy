@@ -1,11 +1,14 @@
+import { Agenda } from "@/components/sections/Agenda";
 import { EcosystemNumbers } from "@/components/sections/EcosystemNumbers";
 import { Footer } from "@/components/sections/Footer";
 import { Governance } from "@/components/sections/Governance";
 import { Hero } from "@/components/sections/Hero";
-import { NowInEcosystem } from "@/components/sections/NowInEcosystem";
 import { PhysicalSpace } from "@/components/sections/PhysicalSpace";
 import { TwoPaths } from "@/components/sections/TwoPaths";
+import { WhatWeDo } from "@/components/sections/WhatWeDo";
+import { SiteHeader } from "@/components/layout/SiteHeader";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { headerCta, navLinks } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
 
 /** Dados estruturados (schema.org) para buscadores. */
@@ -41,13 +44,15 @@ export default function HomePage() {
   return (
     <>
       <JsonLd data={jsonLd} />
+      <SiteHeader links={navLinks} cta={headerCta} />
       <main>
         <Hero />
         <EcosystemNumbers />
-        <NowInEcosystem />
+        <WhatWeDo />
         <TwoPaths />
-        <PhysicalSpace />
         <Governance />
+        <PhysicalSpace />
+        <Agenda />
       </main>
       <Footer />
     </>

@@ -1,7 +1,7 @@
 "use client";
 
 import { m, useScroll, useTransform } from "framer-motion";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
 
@@ -12,7 +12,6 @@ import { Waves } from "@/components/decor/Waves";
 import { Parallax } from "@/components/motion/Parallax";
 import { SplitText } from "@/components/motion/SplitText";
 import { useIntro } from "@/components/providers/IntroProvider";
-import { Logo } from "@/components/ui/Logo";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { MeshGradient } from "@/components/ui/MeshGradient";
 import { EASE_OUT_EXPO, transitions } from "@/lib/animations";
@@ -44,7 +43,7 @@ export function Hero() {
     <section
       ref={ref}
       id="topo"
-      className="relative isolate h-[100svh] min-h-[640px] overflow-hidden bg-ink text-paper"
+      className="relative isolate min-h-[100svh] overflow-hidden bg-ink text-paper md:h-[100svh] md:min-h-[640px]"
     >
       <m.div
         className="absolute inset-0 -z-10"
@@ -111,23 +110,14 @@ export function Hero() {
         <Caranguejo />
       </m.div>
 
-      {/* Barra superior */}
       <m.div
-        className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-5 py-5 md:px-10 md:py-8"
-        {...enter(0.1)}
-      >
-        <a href="#topo" aria-label="Porto Digital NERD — início">
-          <Logo priority className="h-6 md:h-8" />
-        </a>
-        <span className="text-[11px] uppercase tracking-[0.12em] text-paper/60">
-          {heroContent.eyebrow}
-        </span>
-      </m.div>
-
-      <m.div
-        className="relative z-10 mx-auto flex h-full max-w-[1600px] flex-col justify-start px-5 pb-10 pt-28 md:justify-end md:px-10 md:pb-16 md:pt-0"
+        className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1600px] flex-col justify-start px-5 pb-10 pt-28 md:h-full md:min-h-0 md:justify-end md:px-10 md:pb-16 md:pt-0"
         style={{ y: contentY, opacity: contentOpacity }}
       >
+        <m.p className="mb-5 text-[11px] uppercase tracking-[0.12em] text-paper/60 md:mb-6" {...enter(0.1)}>
+          {heroContent.eyebrow}
+        </m.p>
+
         <SplitText
           as="h1"
           text={heroContent.title}
@@ -138,9 +128,9 @@ export function Hero() {
           className="max-w-[14ch] font-display text-[clamp(2.5rem,5.6vw,6.5rem)] font-semibold leading-[0.95] tracking-[-0.02em]"
         />
 
-        <div className="mt-8 flex flex-col gap-8 md:mt-10 md:max-w-[46%]">
+        <div className="mt-8 flex flex-col gap-8 md:mt-10 md:max-w-[48%]">
           <m.p
-            className="max-w-md text-base text-paper/70 md:text-lg"
+            className="max-w-xl text-sm text-paper/70 md:text-base lg:text-lg"
             {...enter(0.9)}
           >
             {heroContent.subtitle}
@@ -156,7 +146,7 @@ export function Hero() {
                 href={cta.href}
                 variant={cta.variant}
                 className="w-full md:w-auto"
-                icon={<ArrowUpRight className="h-4 w-4" aria-hidden />}
+                icon={<ArrowDown className="h-4 w-4" aria-hidden />}
               >
                 {cta.label}
               </MagneticButton>
@@ -167,7 +157,7 @@ export function Hero() {
 
       {/* Indicador de scroll (desktop) */}
       <m.a
-        href="#numeros"
+        href="#porto-digital"
         aria-label="Rolar para o conteúdo"
         className="absolute right-10 top-1/2 z-20 hidden -translate-y-1/2 flex-col items-center gap-3 text-paper/60 transition-colors hover:text-brand-light md:flex"
         initial={{ opacity: 0 }}

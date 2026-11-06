@@ -7,7 +7,7 @@ import type { MouseEvent, PointerEvent, ReactNode } from "react";
 import { transitions } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 
-export type MagneticVariant = "primary" | "ghost" | "dark";
+export type MagneticVariant = "primary" | "ghost" | "dark" | "outline";
 
 interface MagneticButtonProps {
   children: ReactNode;
@@ -31,6 +31,7 @@ interface MagneticButtonProps {
  *  - primary: Highlight (support/coqueiral) — CTA principal sobre fundos escuros.
  *  - ghost: Negative — contorno e texto brancos.
  *  - dark: Primary (brand/porto-azul) com preenchimento marinho.
+ *  - outline: contorno e texto marinho — secundário sobre fundos claros.
  */
 const variantStyles: Record<MagneticVariant, { base: string; fill: string }> = {
   primary: {
@@ -43,6 +44,10 @@ const variantStyles: Record<MagneticVariant, { base: string; fill: string }> = {
   },
   dark: {
     base: "border-marinho bg-porto-azul text-branco hover:text-branco",
+    fill: "bg-marinho",
+  },
+  outline: {
+    base: "border-marinho bg-transparent text-marinho hover:text-branco",
     fill: "bg-marinho",
   },
 };
