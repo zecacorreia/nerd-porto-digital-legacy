@@ -9,7 +9,7 @@ import { SplitText } from "@/components/motion/SplitText";
 import { Marquee } from "@/components/ui/Marquee";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { fadeUp, staggerContainer, viewportEarly } from "@/lib/animations";
-import { capitalActions, capitalIntro, mercadoActions, mercadoIntro } from "@/lib/startup";
+import { capitalActions, capitalIntro, capitalLabel, mercadoActions, mercadoIntro, mercadoLabel } from "@/lib/startup";
 
 const MERCADO_ICONS: Record<string, LucideIcon> = {
   clientes: Briefcase,
@@ -46,8 +46,14 @@ export function MarketDevelopment() {
           </FadeIn>
         </header>
 
+        <FadeIn className="mt-16 md:mt-24">
+          <h3 className="font-display text-xl font-semibold tracking-tight text-paper/80 md:text-2xl">
+            {mercadoLabel}
+          </h3>
+        </FadeIn>
+
         <m.ul
-          className="mt-16 grid gap-4 md:mt-24 md:grid-cols-3 md:gap-5"
+          className="mt-6 grid gap-4 md:mt-8 md:grid-cols-3 md:gap-5"
           variants={staggerContainer({ stagger: 0.1 })}
           initial="hidden"
           whileInView="visible"
@@ -118,6 +124,7 @@ export function CapitalInvestment() {
             />
             <FadeIn delay={0.2}>
               <p className="mt-8 max-w-md text-paper/80 md:text-lg">{capitalIntro}</p>
+              <p className="mt-8 font-display text-xl font-semibold tracking-tight md:text-2xl">{capitalLabel}</p>
             </FadeIn>
           </div>
         </div>

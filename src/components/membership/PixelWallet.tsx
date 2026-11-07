@@ -4,7 +4,7 @@ import { animate, m, useMotionValue, useReducedMotion, useTransform } from "fram
 import { useEffect, useState } from "react";
 
 import { EASE_OUT_EXPO } from "@/lib/animations";
-import { membershipPlans, type PlanId } from "@/lib/membership";
+import { formatBRL, membershipPlans, pixelWallet, type PlanId } from "@/lib/membership";
 import { cn } from "@/lib/utils";
 
 /** Cada quadradinho representa 10 Pixels; o maior plano (850) preenche a grade inteira. */
@@ -37,18 +37,22 @@ export function PixelWallet() {
     <div className="rounded-large border border-paper/10 bg-ink-soft p-6 md:p-8">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-xs uppercase tracking-[0.12em] text-paper/50">Carteira anual</p>
+          <p className="text-xs uppercase tracking-[0.12em] text-paper/50">{pixelWallet.title}</p>
           <p className="mt-3 flex items-baseline gap-2 font-display font-semibold tracking-[-0.02em]">
             <m.span className="text-6xl tabular-nums md:text-7xl" aria-live="polite">
               {display}
             </m.span>
-            <span className="text-lg text-brand-light">Pixels</span>
+            <span className="text-lg text-brand-light">{pixelWallet.unit}</span>
           </p>
         </div>
         <span className="rounded-full bg-brand px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-paper">
           {plan.tier}
         </span>
       </div>
+
+      <p className="mt-4 text-sm text-paper/70" aria-live="polite">
+        {plan.name}: {plan.points} {pixelWallet.perYear}
+      </p>
 
       {/* Grade de Pixels */}
       <div aria-hidden className="mt-8 grid grid-cols-[repeat(17,minmax(0,1fr))] gap-1 md:gap-1.5">
@@ -67,7 +71,9 @@ export function PixelWallet() {
           );
         })}
       </div>
-      <p className="mt-3 text-xs text-paper/40">Cada quadrado = {PIXELS_PER_CELL} Pixels NERD</p>
+      <p className="mt-3 text-xs text-paper/40">
+        {pixelWallet.legend} · {plan.name} por {formatBRL(plan.annualPrice)}/ano
+      </p>
 
       {/* Seletor de plano */}
       <div role="radiogroup" aria-label="Simular plano" className="mt-8 grid grid-cols-3 gap-2">
@@ -86,7 +92,7 @@ export function PixelWallet() {
               )}
             >
               <span className="block text-sm font-medium">{item.name.replace("NERD ", "")}</span>
-              <span className="block text-xs text-paper/50">{item.points} Pixels</span>
+              <span className="block text-xs text-paper/50">{item.points} {pixelWallet.unit}</span>
             </button>
           );
         })}

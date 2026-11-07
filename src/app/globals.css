@@ -366,3 +366,99 @@
     text-decoration: none;
   }
 }
+
+/*
+ * Modal aberto: o <dialog> (showModal) fica na "top layer" do navegador, acima de qualquer z-index,
+ * então o cursor customizado ficaria escondido atrás dele. Enquanto o modal está aberto, some com o
+ * cursor customizado e devolve o cursor nativo.
+ */
+html.has-modal-open .custom-cursor-layer {
+  display: none;
+}
+html.has-custom-cursor.has-modal-open,
+html.has-custom-cursor.has-modal-open * {
+  cursor: auto !important;
+}
+html.has-custom-cursor.has-modal-open :is(a, button, summary, [role="button"], label, select) {
+  cursor: pointer !important;
+}
+
+/* Rolagem suave ao ir para âncoras (Next 16 não sobrescreve mais o scroll-behavior). */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Modal (<dialog>): sobe de baixo no mobile (bottom sheet) e sobe com fade no desktop. */
+@keyframes sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes sheet-down {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+@keyframes dialog-rise {
+  from {
+    opacity: 0;
+    transform: translateY(2.5rem) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes dialog-sink {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(2.5rem) scale(0.97);
+  }
+}
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes backdrop-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.dialog-rise[open] {
+  animation: sheet-up 0.45s var(--ease-out-expo) both;
+}
+.dialog-rise[open]::backdrop {
+  animation: backdrop-in 0.3s ease-out both;
+}
+.dialog-rise[data-closing="true"] {
+  animation: sheet-down 0.25s ease-in both;
+}
+.dialog-rise[data-closing="true"]::backdrop {
+  animation: backdrop-out 0.25s ease-in both;
+}
+@media (min-width: 640px) {
+  .dialog-rise[open] {
+    animation-name: dialog-rise;
+  }
+  .dialog-rise[data-closing="true"] {
+    animation-name: dialog-sink;
+  }
+}

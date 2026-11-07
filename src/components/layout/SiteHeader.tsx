@@ -66,8 +66,13 @@ export function SiteHeader({ links, cta = DEFAULT_CTA }: SiteHeaderProps) {
       transition={transitions.fast}
     >
       <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4 px-5 py-4 md:px-10 md:py-5">
-        <Link href="/" aria-label="Porto Digital NERD — início" onClick={() => setMenuOpen(false)}>
-          <Logo priority className="h-6 md:h-7" />
+        <Link
+          href="/"
+          aria-label="Porto Digital NERD — início"
+          onClick={() => setMenuOpen(false)}
+          className="shrink-0"
+        >
+          <Logo priority className="h-6 w-auto shrink-0 md:h-7" />
         </Link>
 
         <nav aria-label="Principal" className="hidden lg:block">
@@ -87,7 +92,11 @@ export function SiteHeader({ links, cta = DEFAULT_CTA }: SiteHeaderProps) {
             href={cta.href}
             target={external ? "_blank" : undefined}
             rel={external ? "noopener noreferrer" : undefined}
-            className="group inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-brand px-3 py-2.5 text-[10px] font-medium uppercase tracking-[0.08em] text-paper transition-colors hover:bg-paper hover:text-ink sm:px-4 sm:text-xs sm:tracking-[0.12em] md:px-5"
+            className={cn(
+              "group inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-brand px-3 py-2.5 text-[10px] font-medium uppercase tracking-[0.08em] text-paper transition-colors hover:bg-paper hover:text-ink sm:px-4 sm:text-xs sm:tracking-[0.12em] md:px-5",
+              // Sem rótulo curto, o CTA não cabe ao lado do logo em telas estreitas: vai para o menu.
+              !cta.shortLabel && "hidden sm:inline-flex",
+            )}
           >
             <span className={cn(cta.shortLabel && "hidden sm:inline")}>{cta.label}</span>
             {cta.shortLabel && <span className="sm:hidden">{cta.shortLabel}</span>}
@@ -134,6 +143,20 @@ export function SiteHeader({ links, cta = DEFAULT_CTA }: SiteHeaderProps) {
                 </li>
               ))}
             </ul>
+            {!cta.shortLabel && (
+              <div className="mx-auto max-w-[1600px] px-5 pb-6 sm:hidden">
+                <a
+                  href={cta.href}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
+                  onClick={() => setMenuOpen(false)}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand px-5 py-3.5 text-xs font-medium uppercase tracking-[0.12em] text-paper"
+                >
+                  {cta.label}
+                  <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
+                </a>
+              </div>
+            )}
           </m.nav>
         )}
       </AnimatePresence>

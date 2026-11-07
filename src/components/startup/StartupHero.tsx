@@ -8,8 +8,7 @@ import { useIntro } from "@/components/providers/IntroProvider";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { MeshGradient } from "@/components/ui/MeshGradient";
 import { EASE_OUT_EXPO, transitions } from "@/lib/animations";
-import { whatsappLink } from "@/lib/site";
-import { BALCAO_URL, STARTUP_WHATSAPP_MESSAGE, startupHero, startupRoutes } from "@/lib/startup";
+import { BALCAO_URL, balcaoSection, startupHero, startupRoutes } from "@/lib/startup";
 
 /** Mapa das 3 rotas: uma linha vertical se desenha e conecta os nós (cada nó leva à sua seção). */
 function RouteMap({ play }: { play: boolean }) {
@@ -38,11 +37,9 @@ function RouteMap({ play }: { play: boolean }) {
                 {String(index + 1).padStart(2, "0")}
               </span>
               <span className="flex-1">
-                <span className="block text-[11px] uppercase tracking-[0.12em] text-brand-light">{route.axis}</span>
-                <span className="mt-1 block font-display text-xl font-semibold leading-tight tracking-tight md:text-2xl">
+                <span className="block font-display text-xl font-semibold leading-tight tracking-tight md:text-2xl">
                   {route.title}
                 </span>
-                <span className="mt-1 block text-sm text-paper/55">{route.summary}</span>
               </span>
               <ArrowDownRight
                 className="h-5 w-5 shrink-0 text-paper/40 transition-all duration-500 ease-out-expo group-hover:-rotate-45 group-hover:text-paper"
@@ -79,26 +76,18 @@ export function StartupHero() {
           <SplitText
             as="h1"
             text={startupHero.title}
-            highlight={["startups."]}
+            highlight={["startups"]}
             play={isReady}
             delay={0.2}
             stagger={0.03}
             className="mt-6 font-display text-[clamp(3.5rem,10vw,10rem)] font-semibold leading-[0.88] tracking-[-0.02em]"
           />
-          <m.p className="mt-8 max-w-xl text-base text-paper/70 md:text-lg" {...enter(0.7)}>
+          <m.p className="mt-8 max-w-2xl text-sm text-paper/70 md:text-base lg:text-lg" {...enter(0.7)}>
             {startupHero.intro}
           </m.p>
           <m.div className="mt-10 flex flex-wrap gap-3" {...enter(0.85)}>
             <MagneticButton href={BALCAO_URL} external icon={<ArrowUpRight className="h-4 w-4" aria-hidden />}>
-              Acessar o Balcão de Empreendedorismo
-            </MagneticButton>
-            <MagneticButton
-              href={whatsappLink(STARTUP_WHATSAPP_MESSAGE)}
-              external
-              variant="ghost"
-              icon={<ArrowUpRight className="h-4 w-4" aria-hidden />}
-            >
-              Falar com o NERD
+              {balcaoSection.primaryCta}
             </MagneticButton>
           </m.div>
         </div>

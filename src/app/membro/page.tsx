@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { SiteHeader, type HeaderLink } from "@/components/layout/SiteHeader";
+import { SiteHeader } from "@/components/layout/SiteHeader";
 import { HowItWorks } from "@/components/membership/HowItWorks";
 import { MembershipHero } from "@/components/membership/MembershipHero";
 import { Plans } from "@/components/membership/Plans";
@@ -9,6 +9,7 @@ import { Sponsors } from "@/components/membership/Sponsors";
 import { Footer } from "@/components/sections/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { membershipHero, membershipPlans } from "@/lib/membership";
+import { headerCta, navLinks } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
 
 const title = "Membership";
@@ -33,15 +34,6 @@ export const metadata: Metadata = {
   },
 };
 
-const headerLinks: readonly HeaderLink[] = [
-  { label: "Início", href: "/" },
-  { label: "Como funciona", href: "#como-funciona" },
-  { label: "Pixels", href: "#pixels" },
-  { label: "Planos", href: "#planos" },
-  { label: "Para startups", href: "/startup" },
-  { label: "Contato", href: "#contato" },
-];
-
 /** Planos como ofertas (schema.org) para buscadores. */
 const jsonLd = {
   "@context": "https://schema.org",
@@ -64,15 +56,15 @@ export default function MembershipPage() {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <SiteHeader links={headerLinks} />
+      <SiteHeader links={navLinks} cta={headerCta} />
       <main>
         <MembershipHero />
         <HowItWorks />
         <PointsUsage />
-        <Plans />
         <Sponsors />
+        <Plans />
       </main>
-      <Footer />
+      <Footer showCta={false} />
     </>
   );
 }

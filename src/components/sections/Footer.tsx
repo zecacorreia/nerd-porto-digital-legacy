@@ -9,6 +9,7 @@ import { FaixaOndas } from "@/components/decor/Decor";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { SplitText } from "@/components/motion/SplitText";
 import { Logo } from "@/components/ui/Logo";
+import { cn } from "@/lib/utils";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import {
   contactSection,
@@ -67,13 +68,27 @@ function InfoRow({ label, children }: InfoRowProps) {
   );
 }
 
-export function Footer() {
+interface FooterProps {
+  /**
+   * Mostra a chamada "Qual é o próximo passo…" com o botão do WhatsApp (home).
+   * Nas páginas internas só aparecem e-mail e endereço.
+   */
+  showCta?: boolean;
+}
+
+export function Footer({ showCta = true }: FooterProps) {
   const { cta } = contactSection;
 
   return (
     <footer id="contato" className="relative scroll-mt-20 overflow-hidden bg-ink text-paper">
-      <div className="mx-auto grid max-w-[1600px] gap-16 px-5 pt-24 md:grid-cols-12 md:px-10 md:pt-40">
+      <div
+        className={cn(
+          "mx-auto grid max-w-[1600px] gap-16 px-5 md:grid-cols-12 md:px-10",
+          showCta ? "pt-24 md:pt-40" : "pt-16 md:pt-24",
+        )}
+      >
         {/* Chamada + CTA */}
+        {showCta && (
         <div className="flex flex-col md:col-span-6">
           <FadeIn>
             <span className="text-xs uppercase tracking-[0.12em] text-paper/50">(08) — Contato</span>
@@ -100,9 +115,10 @@ export function Footer() {
             </MagneticButton>
           </FadeIn>
         </div>
+        )}
 
         {/* E-mail e endereço */}
-        <FadeIn delay={0.1} className="md:col-span-5 md:col-start-8">
+        <FadeIn delay={0.1} className={showCta ? "md:col-span-5 md:col-start-8" : "md:col-span-7"}>
           <dl className="border-b border-paper/15">
             <InfoRow label={contactSection.emailLabel}>
               <a

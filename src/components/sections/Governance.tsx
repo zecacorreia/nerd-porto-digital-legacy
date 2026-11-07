@@ -85,27 +85,46 @@ function AdvisoryBoard({ members }: { members: readonly BoardMember[] }) {
 
 function CuratorsDialog({ items, onClose }: { items: readonly Curator[]; onClose: () => void }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const closing = useRef(false);
 
   useEffect(() => {
     const dialog = dialogRef.current;
     if (dialog && !dialog.open) dialog.showModal();
     // Trava o scroll da página enquanto o modal está aberto.
-    const previous = document.documentElement.style.overflow;
-    document.documentElement.style.overflow = "hidden";
+    const root = document.documentElement;
+    const previous = root.style.overflow;
+    root.style.overflow = "hidden";
+    // Devolve o cursor nativo (o customizado ficaria atrás do modal, na top layer).
+    root.classList.add("has-modal-open");
     return () => {
-      document.documentElement.style.overflow = previous;
+      root.style.overflow = previous;
+      root.classList.remove("has-modal-open");
     };
   }, []);
+
+  /** Toca a animação de saída (modal desce) e só então fecha o <dialog>. */
+  function requestClose() {
+    const dialog = dialogRef.current;
+    if (!dialog || closing.current) return;
+    closing.current = true;
+    dialog.dataset.closing = "true";
+    window.setTimeout(() => dialog.close(), 250);
+  }
 
   return (
     <dialog
       ref={dialogRef}
       aria-labelledby="curators-title"
       onClose={onClose}
-      onClick={(event) => {
-        if (event.target === event.currentTarget) dialogRef.current?.close();
+      onCancel={(event) => {
+        // Esc: usa a mesma animação de saída.
+        event.preventDefault();
+        requestClose();
       }}
-      className="m-0 mt-auto w-full max-w-none rounded-t-[28px] bg-paper p-0 text-ink backdrop:bg-ink/70 sm:m-auto sm:max-w-[520px] sm:rounded-large"
+      onClick={(event) => {
+        if (event.target === event.currentTarget) requestClose();
+      }}
+      className="dialog-rise m-0 mt-auto w-full max-w-none rounded-t-[28px] bg-paper p-0 text-ink backdrop:bg-ink/70 sm:m-auto sm:max-w-[520px] sm:rounded-large"
     >
       <div className="flex max-h-[88svh] flex-col sm:max-h-[80svh]">
         <header className="flex items-start justify-between gap-4 border-b border-ink/10 px-6 pb-4 pt-6">
@@ -118,7 +137,7 @@ function CuratorsDialog({ items, onClose }: { items: readonly Curator[]; onClose
           <button
             type="button"
             aria-label="Fechar"
-            onClick={() => dialogRef.current?.close()}
+            onClick={requestClose}
             className="-mr-2 -mt-1 grid h-11 w-11 shrink-0 place-items-center rounded-full transition-colors hover:bg-paper-dim"
           >
             <X className="h-5 w-5" aria-hidden />

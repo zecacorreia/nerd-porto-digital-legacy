@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { SiteHeader, type HeaderLink } from "@/components/layout/SiteHeader";
+import { SiteHeader } from "@/components/layout/SiteHeader";
 import { PrintButton } from "@/components/regulamento/PrintButton";
 import { RegBlocks } from "@/components/regulamento/RegBlocks";
+import { Footer } from "@/components/sections/Footer";
 import { Logo } from "@/components/ui/Logo";
+import { headerCta, navLinks } from "@/lib/content";
 import { regulamentoChapters, regulamentoMeta } from "@/lib/regulamento";
 import { siteConfig } from "@/lib/site";
 
@@ -24,12 +26,6 @@ export const metadata: Metadata = {
   },
 };
 
-const headerLinks: readonly HeaderLink[] = [
-  { label: "Início", href: "/" },
-  { label: "Seja membro", href: "/membro" },
-  { label: "Para startups", href: "/startup" },
-];
-
 /**
  * Página documental, propositalmente simples: Server Component sem animações,
  * tipografia de leitura, sumário fixo e estilos de impressão (A4, ver `.print-doc` em globals.css).
@@ -38,7 +34,7 @@ export default function RegulamentoPage() {
   return (
     <>
       <div className="print:hidden">
-        <SiteHeader links={headerLinks} />
+        <SiteHeader links={navLinks} cta={headerCta} />
       </div>
 
       <main className="print-doc bg-paper text-ink print:bg-white">
@@ -73,7 +69,7 @@ export default function RegulamentoPage() {
           </div>
         </header>
 
-        <div className="mx-auto grid max-w-[1200px] gap-12 px-5 py-16 md:px-10 md:py-24 lg:grid-cols-12 print:block print:max-w-none print:px-0 print:py-6">
+        <div className="mx-auto grid max-w-[1200px] grid-cols-[minmax(0,1fr)] gap-12 px-5 py-16 md:px-10 md:py-24 lg:grid-cols-12 print:block print:max-w-none print:px-0 print:py-6">
           {/* Sumário */}
           <nav aria-label="Sumário" className="lg:col-span-4 print:hidden">
             <div className="lg:sticky lg:top-28">
@@ -140,23 +136,10 @@ export default function RegulamentoPage() {
         </div>
       </main>
 
-      {/* Rodapé enxuto */}
-      <footer className="bg-ink py-10 text-sm text-paper/60 print:hidden">
-        <div className="mx-auto flex max-w-[1200px] flex-col gap-4 px-5 md:flex-row md:items-center md:justify-between md:px-10">
-          <p>
-            © {new Date().getFullYear()} {siteConfig.organization.name} · {siteConfig.address.street},{" "}
-            {siteConfig.address.neighborhood} — {siteConfig.address.city}/{siteConfig.address.region}
-          </p>
-          <div className="flex gap-6">
-            <Link href="/membro" className="transition-colors hover:text-paper">
-              Ver planos
-            </Link>
-            <Link href="/" className="transition-colors hover:text-paper">
-              Voltar ao início
-            </Link>
-          </div>
-        </div>
-      </footer>
+      {/* Rodapé padrão (contato e links institucionais); fora da impressão */}
+      <div className="print:hidden">
+        <Footer showCta={false} />
+      </div>
     </>
   );
 }

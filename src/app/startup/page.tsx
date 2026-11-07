@@ -7,8 +7,16 @@ import { BalcaoCta } from "@/components/startup/BalcaoCta";
 import { Journey } from "@/components/startup/Journey";
 import { CapitalInvestment, MarketDevelopment } from "@/components/startup/MarketAndCapital";
 import { StartupHero } from "@/components/startup/StartupHero";
+import { headerCta } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
-import { startupHero, startupRoutes } from "@/lib/startup";
+import {
+  balcaoSection,
+  capitalIntro,
+  formacaoIntro,
+  mercadoIntro,
+  startupHero,
+  startupRoutes,
+} from "@/lib/startup";
 
 const title = "Para startups";
 const description = startupHero.intro;
@@ -33,10 +41,15 @@ export const metadata: Metadata = {
 };
 
 const headerLinks: readonly HeaderLink[] = [
-  { label: "Início", href: "/" },
-  ...startupRoutes.map((route) => ({ label: route.axis, href: `#${route.id}` as const })),
-  { label: "Seja membro", href: "/membro" },
+  ...startupRoutes.map((route) => ({ label: route.navLabel, href: `#${route.id}` as const })),
+  { label: "Por onde começar", href: `#${balcaoSection.id}` },
 ];
+
+const ROUTE_SUMMARIES: Record<(typeof startupRoutes)[number]["id"], string> = {
+  "formacao-empreendedora": formacaoIntro,
+  "desenvolvimento-de-mercado": mercadoIntro,
+  "capital-e-investimento": capitalIntro,
+};
 
 /** As 3 rotas como serviços (schema.org). */
 const jsonLd = {
@@ -51,7 +64,7 @@ const jsonLd = {
     name: "Rotas para negócios",
     itemListElement: startupRoutes.map((route) => ({
       "@type": "Offer",
-      itemOffered: { "@type": "Service", name: route.title, description: route.summary },
+      itemOffered: { "@type": "Service", name: route.title, description: ROUTE_SUMMARIES[route.id] },
     })),
   },
 };
@@ -60,7 +73,7 @@ export default function StartupPage() {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <SiteHeader links={headerLinks} />
+      <SiteHeader links={headerLinks} cta={headerCta} />
       <main>
         <StartupHero />
         <Journey />
@@ -68,7 +81,7 @@ export default function StartupPage() {
         <CapitalInvestment />
         <BalcaoCta />
       </main>
-      <Footer />
+      <Footer showCta={false} />
     </>
   );
 }

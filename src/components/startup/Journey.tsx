@@ -8,7 +8,7 @@ import { FadeIn } from "@/components/motion/FadeIn";
 import { SplitText } from "@/components/motion/SplitText";
 import { transitions } from "@/lib/animations";
 import { useMediaQuery } from "@/lib/hooks";
-import { formacaoIntro, journeyStages, type JourneyStage } from "@/lib/startup";
+import { formacaoIntro, journeyLabel, journeyStages, startupRoutes, type JourneyStage } from "@/lib/startup";
 import { useHorizontalTrack, type HorizontalTrackMeasure } from "@/lib/useHorizontalTrack";
 import { cn } from "@/lib/utils";
 
@@ -26,7 +26,7 @@ const scanPosition = (progress: number, total: number, viewportWidth: number) =>
 function SectionIntro({ compact = false }: { compact?: boolean }) {
   return (
     <div>
-      <span className="text-xs uppercase tracking-[0.12em] text-ink/50">(01) — Talentos</span>
+      <span className="text-xs uppercase tracking-[0.12em] text-ink/50">(01) — {startupRoutes[0]?.axis}</span>
       <SplitText
         as="h2"
         trigger="inView"
@@ -39,7 +39,7 @@ function SectionIntro({ compact = false }: { compact?: boolean }) {
       />
       <p className="mt-8 max-w-md text-base text-ink/60 md:text-lg">{formacaoIntro}</p>
       <p className="mt-10 flex items-center gap-3 text-sm uppercase tracking-[0.12em] text-ink/50">
-        A jornada, etapa por etapa
+        {journeyLabel}
         {!compact && <ArrowRight className="h-4 w-4" aria-hidden />}
       </p>
     </div>
