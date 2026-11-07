@@ -34,7 +34,7 @@ function BoardCard({ member }: { member: BoardMember }) {
     <m.li
       variants={fadeUp}
       custom={20}
-      className="group flex flex-col gap-4 rounded-large border border-ink/10 bg-paper-dim/50 p-3 transition-colors duration-500 ease-out-expo hover:border-ink hover:bg-ink hover:text-paper"
+      className="group flex w-[46%] shrink-0 snap-start flex-col gap-4 rounded-large border border-ink/10 bg-paper-dim/50 p-3 transition-colors duration-500 ease-out-expo hover:border-ink hover:bg-ink hover:text-paper sm:w-[30%] md:w-auto md:shrink"
     >
       {/* Espaço do retrato: iniciais enquanto não há foto */}
       <div
@@ -65,7 +65,7 @@ function AdvisoryBoard({ members }: { members: readonly BoardMember[] }) {
 
       <m.ul
         aria-label="Conselho consultivo"
-        className="mt-10 grid grid-cols-2 gap-3 md:mt-14 md:grid-cols-4 md:gap-4 xl:grid-cols-7"
+        className="-mx-5 mt-10 flex snap-x snap-mandatory scroll-pl-5 gap-3 overflow-x-auto px-5 pb-2 [scrollbar-width:none] md:mx-0 md:mt-14 md:grid md:snap-none md:grid-cols-4 md:gap-4 md:overflow-visible md:px-0 md:pb-0 xl:grid-cols-7 [&::-webkit-scrollbar]:hidden"
         variants={staggerContainer({ stagger: 0.05 })}
         initial="hidden"
         whileInView="visible"
