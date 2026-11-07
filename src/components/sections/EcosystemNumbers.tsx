@@ -1,6 +1,7 @@
 "use client";
 
 import { m, useInView, useScroll, useTransform } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
 
 import { MarcoZero } from "@/components/decor/Decor";
@@ -8,8 +9,9 @@ import { FadeIn } from "@/components/motion/FadeIn";
 import { Parallax } from "@/components/motion/Parallax";
 import { SplitText } from "@/components/motion/SplitText";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import { lineGrow, viewportOnce } from "@/lib/animations";
-import { ecosystemStats, type EcosystemStat } from "@/lib/content";
+import { ecosystemStats, portoDigital, type EcosystemStat } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
@@ -147,16 +149,12 @@ function FloatingShapes() {
 interface StatItemProps {
   stat: EcosystemStat;
   index: number;
-  featured: boolean;
 }
 
-function StatItem({ stat, index, featured }: StatItemProps) {
+function StatItem({ stat, index }: StatItemProps) {
   return (
     <m.li
-      className={cn(
-        "relative pt-6",
-        featured ? "md:col-span-3" : "md:col-span-2",
-      )}
+      className="relative pt-6"
       initial="hidden"
       whileInView="visible"
       viewport={viewportOnce}
@@ -167,20 +165,11 @@ function StatItem({ stat, index, featured }: StatItemProps) {
         variants={lineGrow}
         custom={index * 0.08}
       />
-      <div className="flex items-start justify-between text-xs uppercase tracking-[0.12em] text-ink/50">
-        <span>{String(index + 1).padStart(2, "0")}</span>
-        <span>{stat.label}</span>
-      </div>
+      <span className="text-xs uppercase tracking-[0.12em] text-ink/50">
+        {String(index + 1).padStart(2, "0")}
+      </span>
 
-      <p
-        className={cn(
-          "mt-6 flex items-baseline font-display font-semibold leading-[0.85] tracking-[-0.02em]",
-          featured
-            ? "text-[clamp(5rem,14vw,13rem)]"
-            : "text-[clamp(4rem,10vw,9rem)]",
-        )}
-      >
-        {stat.prefix && <span className="text-[0.4em]">{stat.prefix}</span>}
+      <p className="mt-6 flex flex-wrap items-baseline font-display text-[clamp(3.5rem,7vw,7rem)] font-semibold leading-[0.9] tracking-[-0.02em]">
         <AnimatedCounter value={stat.value} delay={index * 0.1} />
         {stat.suffix && (
           <span className="ml-2 text-[0.35em] tracking-tight text-brand">
@@ -190,8 +179,17 @@ function StatItem({ stat, index, featured }: StatItemProps) {
       </p>
 
       <FadeIn delay={0.2 + index * 0.08} distance={20}>
-        <p className="mt-6 max-w-xs text-sm text-ink/60 md:text-base">
-          {stat.description}
+        <p className="mt-5 flex max-w-xs flex-wrap gap-x-2 text-sm text-ink/60 md:text-base">
+          {stat.labelParts
+            ? stat.labelParts.map((part, partIndex) => (
+                <span key={part} className="inline-flex items-center gap-2">
+                  {partIndex > 0 && (
+                    <span aria-hidden className="h-1.5 w-1.5 rotate-45 bg-brand" />
+                  )}
+                  {part}
+                </span>
+              ))
+            : stat.label}
         </p>
       </FadeIn>
     </m.li>
@@ -215,9 +213,9 @@ export function EcosystemNumbers() {
   return (
     <section
       ref={ref}
-      id="numeros"
-      aria-label="Números do ecossistema"
-      className="relative isolate overflow-hidden bg-paper py-24 text-ink md:py-40"
+      id="porto-digital"
+      aria-label="Porto Digital"
+      className="relative isolate scroll-mt-20 overflow-hidden bg-paper py-24 text-ink md:py-40"
     >
       <FloatingShapes />
 
@@ -231,29 +229,45 @@ export function EcosystemNumbers() {
         <header className="grid gap-8 md:grid-cols-12">
           <FadeIn className="md:col-span-3">
             <span className="text-xs uppercase tracking-[0.12em] text-ink/50">
-              (01) — Ecossistema
+              (01) — Porto Digital
             </span>
           </FadeIn>
           <div className="md:col-span-9">
             <SplitText
               as="h2"
               trigger="inView"
-              text="Um ecossistema que não para de crescer."
-              highlight={["crescer."]}
+              text={portoDigital.title}
+              highlight={portoDigital.highlight}
               highlightClassName="text-brand"
-              className="font-display text-mega font-semibold leading-[0.92] tracking-[-0.02em]"
+              className="font-display text-[clamp(2.5rem,6vw,6.5rem)] font-semibold leading-[0.95] tracking-[-0.02em]"
             />
           </div>
         </header>
 
-        <ul className="mt-20 grid gap-x-8 gap-y-16 md:mt-32 md:grid-cols-6">
+        {/* Texto de apoio + CTA, alinhados à coluna do título */}
+        <div className="mt-12 grid gap-8 md:mt-16 md:grid-cols-12">
+          <div className="flex flex-col gap-6 md:col-span-6 md:col-start-4 md:text-lg">
+            {portoDigital.paragraphs.map((paragraph, index) => (
+              <FadeIn key={paragraph} delay={0.1 + index * 0.1} distance={20}>
+                <p className="text-ink/70">{paragraph}</p>
+              </FadeIn>
+            ))}
+          </div>
+          <FadeIn delay={0.3} className="md:col-span-3 md:flex md:items-end md:justify-end">
+            <MagneticButton
+              href={portoDigital.cta.href}
+              external
+              variant="dark"
+              icon={<ArrowUpRight className="h-4 w-4" aria-hidden />}
+            >
+              {portoDigital.cta.label}
+            </MagneticButton>
+          </FadeIn>
+        </div>
+
+        <ul className="mt-20 grid gap-x-8 gap-y-14 sm:grid-cols-2 md:mt-28 lg:grid-cols-4">
           {ecosystemStats.map((stat, index) => (
-            <StatItem
-              key={stat.id}
-              stat={stat}
-              index={index}
-              featured={index < 2}
-            />
+            <StatItem key={stat.id} stat={stat} index={index} />
           ))}
         </ul>
       </div>
@@ -269,7 +283,7 @@ export function EcosystemNumbers() {
           className="hollow whitespace-nowrap font-display text-[clamp(3rem,10vw,10rem)] font-bold uppercase leading-none tracking-[-0.02em] text-ink/40"
           style={{ x: marqueeB }}
         >
-          Inovação · Negócios · Talentos · Inovação · Negócios · Talentos
+          Empresas · Startups · Talentos · Empresas · Startups · Talentos
         </m.p>
       </div>
     </section>
